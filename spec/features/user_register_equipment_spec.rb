@@ -6,7 +6,6 @@ feature 'User register tools' do
 		visit new_equipment_path
 
 		expect(page).to have_css('h1', text:'Cadastro de Equipamentos')
-		expect(page).to have_content 'Cadastrar Equipamento'
 	end
 
   scenario 'and register a new equipment with success' do
@@ -22,14 +21,14 @@ feature 'User register tools' do
     visit new_equipment_path
 
     fill_in 'Categoria', with: equipment.category
-    fill_in 'Número da Serie', with: equipment.serial_number
+    fill_in 'Número de Serie', with: equipment.serial_number
     fill_in 'Data de Aquisição', with: equipment.acquisition_date
     fill_in 'Valor de Reposição', with: equipment.replacement_value
     fill_in 'Limite de Uso', with: equipment.usage_limit
     fill_in 'Descrição', with: equipment.description
     
 
-    click_on 'Cadastar Equipamento'
+    click_button 'Cadastrar Equipamento'
 
     expect(page).to have_content equipment.category
     expect(page).to have_content equipment.serial_number
