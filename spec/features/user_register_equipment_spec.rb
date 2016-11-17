@@ -37,4 +37,22 @@ feature 'User register tools' do
     expect(page).to have_content equipment.usage_limit
     expect(page).to have_content equipment.description 
   end
+
+  scenario 'and user try to register equipment with empty values' do
+
+    equipment = Equipment.new
+
+    visit new_equipment_path
+
+    fill_in 'Categoria', with: equipment.category
+    fill_in 'Número de Serie', with: equipment.serial_number
+    fill_in 'Data de Aquisição', with: equipment.acquisition_date
+    fill_in 'Valor de Reposição', with: equipment.replacement_value
+    fill_in 'Limite de Uso', with: equipment.usage_limit
+    fill_in 'Descrição', with: equipment.description
+
+    click_button 'Cadastrar Equipamento'
+
+    expect(page).to have_content 'Não foi possível cadastrar equipamento'
+  end
 end

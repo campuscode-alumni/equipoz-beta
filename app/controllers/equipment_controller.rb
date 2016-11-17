@@ -5,9 +5,15 @@ class EquipmentController < ApplicationController
 	end
 
   def create
+    @equipment = Equipment.new(equipment_params)
 
-    equipment = Equipment.create(equipment_params)
-    redirect_to equipment_path(equipment)
+    if @equipment.save
+      redirect_to equipment_path(@equipment)
+    else
+      flash.now[:error] = 'Não foi possível cadastrar equipamento'
+      render :new
+
+    end
 
   end
 
