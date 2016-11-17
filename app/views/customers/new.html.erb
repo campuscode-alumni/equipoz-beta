@@ -1,0 +1,13 @@
+
+<%= simple_form_for @customer do |f| %>
+  <%= f.input :name, label: 'Nome' %>
+  <%= f.input :legal_name, label: 'Razão Social' %>
+  <%= f.input :customer_type, label: 'Tipo de Cliente' %>
+  <%= f.input :document, label: 'CPF/CNPJ'%>
+  <%= f.input :fiscal_number, label: 'Inscrição Estadual'%>
+  <%= f.input :contact_name, label: 'Contato'%>
+  <%= f.input :phone_number, label: 'Telefone'%>
+  <%= f.input :email, label: 'E-mail'%>
+  <%= f.input :address, label: 'Endereço'%>
+  <%= f.button :submit, 'Cadastrar Cliente' %>
+<% end %>
