@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-	resources :equipament, only: [:new]
+	resources :equipment, only: [:new]
 end
