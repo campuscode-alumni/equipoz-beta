@@ -1,6 +1,7 @@
 class ContractsController < ApplicationController
   def new
     @contract = Contract.new
+    @customer = Customer.all
   end
 
   def create
@@ -10,7 +11,7 @@ class ContractsController < ApplicationController
     else
       flash.now[:error] = 'Não foi possível criar contrato'
       render :new
-    end  
+    end
   end
 
   def show
@@ -19,7 +20,7 @@ class ContractsController < ApplicationController
 
   private
     def contract_params
-      params.require(:contract).permit(:customer, :equipment, :rental_period, :delivery_address,
+      params.require(:contract).permit(:customer_id, :equipment, :rental_period, :delivery_address,
         :contact, :payment_method, :amount, :discount, :total_amount)
     end
 

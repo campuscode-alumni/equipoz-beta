@@ -1,3 +1,4 @@
 class Contract < ApplicationRecord
-  validates :customer, :equipment, presence: true
+  belongs_to :customer
+  validates :equipment, presence: true
 end

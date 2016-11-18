@@ -2,12 +2,17 @@ require 'rails_helper'
 
 feature 'User create a contract' do
   scenario 'successfully' do
+
+
     contract = build(:contract)
+
     visit new_contract_path
 
-    fill_in 'Cliente', with: contract.customer
+    select contract.customer.name, from: 'Cliente'
+
     fill_in 'Equipamentos', with: contract.equipment
-    fill_in 'Prazo de Locação', with: contract.rental_period
+    select contract.rental_period, from: 'Prazo de Locação'
+
     fill_in 'Endereço de Entrega', with: contract.delivery_address
     fill_in 'Responsável', with: contract.contact
     select contract.payment_method, from: 'Formas de Pagamento'
@@ -17,7 +22,8 @@ feature 'User create a contract' do
 
     click_on 'Gerar Contrato'
 
-    expect(page).to have_css('h1', text: contract.customer)
+    expect(page).not_to have_content('Não foi possível criar contrato')
+    expect(page).to have_css('h1', text: contract.customer.name)
     expect(page).to have_content(contract.equipment)
     expect(page).to have_content(contract.rental_period)
     expect(page).to have_content(contract.delivery_address)
