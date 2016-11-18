@@ -1,0 +1,5 @@
+<h1>Recibo de Entrega</h1>
+
+<p>
+  Eu, <%= @contract.contact %>. (nome do responsável), em nome da empresa ……………………………. (razão social), inscrita no CNPJ …………………………… declaro ter recebido os equipamentos ………………… (lista dos equipamentos contendo numero de serie e nome) pelo período de <%= @contract.rental_period %> em perfeitas condições de uso no endereço <%= @contract.delivery_address %>. (endereço de entrega) no dia <%= @delivery_receipt.created_at %> (data da emissão) de acordo com o contrato <%= @delivery_receipt.contract_id %> (numero do contrato).
+</p>
