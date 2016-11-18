@@ -41,4 +41,15 @@ ActiveRecord::Schema.define(version: 20161118214645) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "equipment", force: :cascade do |t|
+    t.string   "category"
+    t.string   "serial_number"
+    t.datetime "acquisition_date"
+    t.float    "replacement_value"
+    t.integer  "usage_limit"
+    t.text     "description"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
 end
