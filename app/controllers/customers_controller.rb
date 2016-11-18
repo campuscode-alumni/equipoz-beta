@@ -6,8 +6,13 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new cust_params
-    @customer.save
-    redirect_to customer_path(@customer)
+    if @customer.save
+      redirect_to customer_path(@customer)
+    else
+      flash[:msg] = 'Não foi possível cadastrar o cliente'
+      flash[:name] = 'todo'
+      render :new
+    end
   end
 
   def show
