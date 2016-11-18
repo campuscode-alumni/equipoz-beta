@@ -40,4 +40,10 @@ feature 'User create client' do
       expect(page).to have_content customer.address
 
     end
+
+    scenario 'unsuccessfully' do
+      click_on 'Cadastrar Cliente'
+      #cadastrar sem dados
+      expect(page).to have_
+    end
 end
