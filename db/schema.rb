@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 20161118231404) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "delivery_receipts", force: :cascade do |t|
+    t.integer  "contract_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["contract_id"], name: "index_delivery_receipts_on_contract_id"
+  end
+
   create_table "equipment", force: :cascade do |t|
     t.string   "category"
     t.string   "serial_number"

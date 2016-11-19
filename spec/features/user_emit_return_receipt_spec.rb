@@ -29,9 +29,7 @@ feature 'User emit return receipt' do
 
       visit contracts_path
 
-      click_on 'Gafisa'
-
-      click_on 'Criar Recibo de Entrega'
+      click_on 'Emitir Devolução'
 
       fill_in 'Funcionario', with: return_receipt.employee
       fill_in 'Documento', with: return_receipt.document
