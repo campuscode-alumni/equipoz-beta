@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :contract do
     customer
-    equipment "Furadeira; Andaime"
     rental_period 30
     delivery_address "Av. Paulista, n-55, cep 122222"
     contact "Joao"

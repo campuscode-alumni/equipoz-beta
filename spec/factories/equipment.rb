@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :equipment do
-    category "MyString"
-    serial_number "MyString"
+    category "Furadeira"
+    serial_number "AGCBRA001"
     acquisition_date "2016-11-17 20:26:23"
-    replacement_value 1.5
-    usage_limit 1
-    description "MyText"
+    replacement_value 100.5
+    usage_limit 10
+    description "Makita 120v"
   end
 end

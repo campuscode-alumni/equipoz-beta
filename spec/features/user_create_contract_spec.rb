@@ -4,13 +4,15 @@ feature 'User create a contract' do
   scenario 'successfully' do
 
 
+    equipment = create(:equipment)
     contract = build(:contract)
+
 
     visit new_contract_path
 
     select contract.customer.name, from: 'Cliente'
 
-    fill_in 'Equipamentos', with: contract.equipment
+    select equipment.description, from: 'Equipamentos'
     select contract.rental_period, from: 'Prazo de Locação'
 
     fill_in 'Endereço de Entrega', with: contract.delivery_address
@@ -24,7 +26,7 @@ feature 'User create a contract' do
 
     expect(page).not_to have_content('Não foi possível criar contrato')
     expect(page).to have_css('h1', text: contract.customer.name)
-    expect(page).to have_content(contract.equipment)
+    expect(page).to have_content(equipment.description)
     expect(page).to have_content(contract.rental_period)
     expect(page).to have_content(contract.delivery_address)
     expect(page).to have_content(contract.contact)
