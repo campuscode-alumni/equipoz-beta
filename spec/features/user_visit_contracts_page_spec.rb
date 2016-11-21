@@ -2,14 +2,15 @@ require 'rails_helper'
 
 feature 'User visit contracts page' do
   scenario 'successfully' do
+    equipment = create(:equipment)
 
-    contract_01 = create(:contract)
-    contract_02 = create(:contract, total_amount:450.90)
+    contract_01 = create(:contract, equipment_ids: [equipment.id])
+    contract_02 = create(:contract, total_amount:450.90, equipment_ids: [equipment.id])
 
     visit contracts_path
 
     expect(page).to have_content('Contratos')
-    expect(page).to have_content(contract_01.equipment)
+    expect(page).to have_content(contract_01.equipment.first.category)
     expect(page).to have_content(contract_01.rental_period)
     expect(page).to have_content(contract_01.delivery_address)
     expect(page).to have_content(contract_01.contact)
@@ -18,7 +19,7 @@ feature 'User visit contracts page' do
     expect(page).to have_content(contract_01.discount)
     expect(page).to have_content(contract_01.total_amount)
 
-    expect(page).to have_content(contract_02.equipment)
+    expect(page).to have_content(contract_02.equipment.first.category)
     expect(page).to have_content(contract_02.rental_period)
     expect(page).to have_content(contract_02.delivery_address)
     expect(page).to have_content(contract_02.contact)
