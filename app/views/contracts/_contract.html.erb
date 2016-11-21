@@ -6,4 +6,13 @@
 <p><%= contract.amount %></p>
 <p><%= contract.discount %></p>
 <p><%= contract.total_amount %></p>
-<p><%= link_to 'Emitir', delivery_receipt_contract_path(contract.id), method: :post %></p> 
+
+<% if contract.delivery_receipt %>
+  <p>
+    <%= link_to 'Visualizar', delivery_receipt_contract_path(contract.id) %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to 'Emitir', delivery_receipt_contract_path(contract.id), method: :post %>
+  </p> 
+<% end %>
