@@ -1,6 +1,6 @@
 <h1> <%= @contract.customer.name %> </h1>
 <% @contract.equipment.each do |equipment| %>
-  <p><%= equipment.description %></p>
+  <p><%= equipment.category %></p>
 <% end %>
 <p><%= @contract.rental_period %></p>
 <p><%= @contract.delivery_address %></p>

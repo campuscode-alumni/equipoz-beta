@@ -12,7 +12,7 @@ feature 'User create a contract' do
 
     select contract.customer.name, from: 'Cliente'
 
-    select equipment.description, from: 'Equipamentos'
+    select equipment.category, from: 'Equipamentos'
     select contract.rental_period, from: 'Prazo de Locação'
 
     fill_in 'Endereço de Entrega', with: contract.delivery_address
@@ -26,7 +26,7 @@ feature 'User create a contract' do
 
     expect(page).not_to have_content('Não foi possível criar contrato')
     expect(page).to have_css('h1', text: contract.customer.name)
-    expect(page).to have_content(equipment.description)
+    expect(page).to have_content(equipment.category)
     expect(page).to have_content(contract.rental_period)
     expect(page).to have_content(contract.delivery_address)
     expect(page).to have_content(contract.contact)
