@@ -23,6 +23,12 @@ feature 'user create delivery receipt' do
     expect(page).to have_content(contract.delivery_address)
     expect(page).to have_content(contract.delivery_receipt.created_at)
     expect(page).to have_content(contract.delivery_receipt.contract_id)
+  end
 
+  scenario 'User visit delivery receipt page of invalid contract' do
+    visit delivery_receipt_contract_path(1)
+
+    expect(page).to have_current_path(contracts_path)
+    expect(page).to have_content('Contrato inválido')
   end
 end
