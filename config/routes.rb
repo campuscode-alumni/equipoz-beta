@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     member do
       get 'delivery_receipt', to: 'delivery_receipts#show'
       post 'delivery_receipt', to: 'delivery_receipts#create'
+
+			get 'return_receipt', to: 'return_receipt#new'
+			post 'return_receipt', to: 'return_receipt#create'
+			get 'return_receipt', to: 'return_receipt#show'
+
     end
   end
 end
