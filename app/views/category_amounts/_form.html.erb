@@ -1,0 +1,6 @@
+<%= simple_form_for @category_amount do |f| %>
+  <%= f.input :category_id, collection: @categories, label: 'Categoria' %>
+  <%= f.input :rental_period, collection: @rental_periods, label: 'Prazo de Locação' %>
+  <%= f.input :amount, label: 'Valor' %>
+  <%= f.submit 'Registrar Valor' %>
+<% end %>
