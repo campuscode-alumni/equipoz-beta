@@ -1,6 +1,7 @@
 class ReturnReceiptsController < ApplicationController
 
   def show
+    @contract = Contract.find params[:id]
   end
 
   def new
@@ -10,9 +11,11 @@ class ReturnReceiptsController < ApplicationController
 
   def create
     @contract = Contract.find params[:contract_id]
-    @return_receipt = ReturnReceipt.new return_params
-    @return_receipt.save
-    render :show
+
+    @contract.build_return_receipt(return_params)
+    @contract.save
+
+    redirect_to return_receipt_contract_path @contract
   end
 
   private

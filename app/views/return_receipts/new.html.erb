@@ -1,5 +1,5 @@
-<%= simple_form_for @return_receipt do |f| %>
-  <%= f.input :employee, label: "Funcionario" %>
-  <%= f.input :document, label: "Documento" %>
-  <%= f.button :sumit, 'Criar Recibo de Devolução' %>
+<%= simple_form_for [@contract, @return_receipt] do |f| %>
+    <%= f.input :employee, label: "Funcionario" %>
+    <%= f.input :document, label: "Documento" %>
+    <%= f.button :submit, 'Criar Recibo de Devolução' %>
 <% end %>

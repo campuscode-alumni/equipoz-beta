@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User emit return receipt' do
+feature 'User create return receipt' do
     scenario 'successfully'do
       return_receipt = ReturnReceipt.new(employee: 'João',
                                          document: '123')
@@ -42,7 +42,7 @@ feature 'User emit return receipt' do
       fill_in 'Funcionario', with: return_receipt.employee
       fill_in 'Documento', with: return_receipt.document
 
-      click_on 'Criar Recibo de Entrega'
+      click_on 'Criar Recibo de Devolução'
 
       expect(page).to have_content return_receipt.employee
       expect(page).to have_content return_receipt.document
