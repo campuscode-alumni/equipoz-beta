@@ -3,5 +3,12 @@
 <% if @contracts.any? %>
   <%= render @contracts %>
 <% else %>
+
   Não há contratos
 <% end %>
+
+<nav>
+  <%= link_to 'Novo contrato', new_contract_path %>
+  <%= link_to 'Novo contrato', new_customer_path %>
+  <%= link_to 'Novo contrato', new_equipment_path %>
+</nav>

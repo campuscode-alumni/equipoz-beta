@@ -1,6 +1,6 @@
 <%= simple_form_for @contract do |f| %>
   <%= f.input :customer_id, collection: @customer, label: 'Cliente' %>
-  <%= f.association :equipment, label_method: :category, label: 'Equipamentos' %>
+  <%= f.association :equipment, label_method: :description, label: 'Equipamentos' %>
   <%= f.input :rental_period, collection: [1,3,5,15,30], label: 'Prazo de Locação' %>
   <%= f.input :delivery_address, label: 'Endereço de Entrega' %>
   <%= f.input :contact, label: 'Responsável' %>
@@ -8,5 +8,5 @@
   <%= f.input :amount, label: 'Preço' %>
   <%= f.input :discount, label: 'Desconto' %>
   <%= f.input :total_amount, label: 'Preço Final' %>
-  <%= f.submit 'Gerar Contrato' %>
+  <%= f.button :submit, 'Gerar Contrato' %>
 <% end %>

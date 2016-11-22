@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121230325) do
+ActiveRecord::Schema.define(version: 20161121234743) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "contracts", force: :cascade do |t|
     t.integer  "rental_period"
@@ -48,7 +54,6 @@ ActiveRecord::Schema.define(version: 20161121230325) do
   end
 
   create_table "equipment", force: :cascade do |t|
-    t.string   "category"
     t.string   "serial_number"
     t.datetime "acquisition_date"
     t.float    "replacement_value"
@@ -56,6 +61,8 @@ ActiveRecord::Schema.define(version: 20161121230325) do
     t.text     "description"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_equipment_on_category_id"
   end
 
   create_table "rental_equipments", force: :cascade do |t|
