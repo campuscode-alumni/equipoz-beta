@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 feature 'User create a contract' do
+
+  scenario 'visiting #new' do
+    visit root_path
+    click_on 'Painel Administrativo'
+    click_on 'Novo Contrato'
+    expect(new_contract_path)
+  end
+
   scenario 'successfully' do
 
 
