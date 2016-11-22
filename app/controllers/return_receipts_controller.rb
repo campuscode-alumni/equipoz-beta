@@ -12,10 +12,15 @@ class ReturnReceiptsController < ApplicationController
   def create
     @contract = Contract.find params[:contract_id]
 
-    @contract.build_return_receipt(return_params)
-    @contract.save
+    @return_receipt = @contract.build_return_receipt(return_params)
 
-    redirect_to return_receipt_contract_path @contract
+    if @return_receipt.save
+      redirect_to return_receipt_contract_path(@contract)
+    else
+      flash.now[:error] = 'Não é possível criar o recibo de devolução'
+      render :new
+    end
+
   end
 
   private

@@ -47,7 +47,7 @@ feature 'User create return receipt' do
     expect(page).to have_content return_receipt.document
   end
 
-    scenario 'unsuccessfully' do
+  scenario 'unsuccessfully' do
 
     customer = Customer.create(name: 'Gafisa',
                                legal_name: 'Clockwork',
@@ -58,6 +58,7 @@ feature 'User create return receipt' do
                                phone_number: '1406-1406',
                                email: 'rcecosta@gmail.com',
                                address: 'Explanada dos ministérios, 33')
+
     category = Category.create(name: 'Furadeira')
 
     equipment = Equipment.create(category: category,
@@ -123,7 +124,7 @@ feature 'User create return receipt' do
 
   contract.save
 
-  visit contracts_path
+  visit contract_path contract
 
   expect(page).to have_content('Visualizar')
 
