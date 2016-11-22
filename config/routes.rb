@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :customers, only: [:new, :create, :show]
 
+	resources :category_amounts, only: [:new, :create, :show]
+
   resources :contracts, only: [:index, :new, :create, :show] do
     member do
       get 'delivery_receipt', to: 'delivery_receipts#show'
