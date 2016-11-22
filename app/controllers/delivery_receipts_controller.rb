@@ -7,8 +7,14 @@ class DeliveryReceiptsController < ApplicationController
   end
 
   def show
-    @contract = Contract.find(params[:id])
-    @delivery_receipt = @contract.delivery_receipt
+    @contract = Contract.find_by(id: params[:id])
+
+    if @contract.nil?
+      flash[:error] = 'Contrato inválido'
+      redirect_to contracts_path
+    else
+      @delivery_receipt = @contract.delivery_receipt
+    end
   end
 end
  
