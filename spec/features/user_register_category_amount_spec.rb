@@ -20,4 +20,12 @@ feature 'User can register an amount by category' do
     expect(page).to have_css('strong', text: 'Valor')
     expect(page).to have_content(category_amount.amount)
   end
+
+  scenario 'empty category_id' do
+    visit new_category_amount_path
+
+    click_on 'Registrar Valor'
+
+    expect(page).to have_content "can't be blank"
+  end
 end
