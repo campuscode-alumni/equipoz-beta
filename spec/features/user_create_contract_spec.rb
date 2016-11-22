@@ -12,7 +12,7 @@ feature 'User create a contract' do
 
     select contract.customer.name, from: 'Cliente'
 
-    select equipment.category, from: 'Equipamentos'
+    select equipment.category.name, from: 'Equipamentos'
     select contract.rental_period, from: 'Prazo de Locação'
 
     fill_in 'Endereço de Entrega', with: contract.delivery_address
