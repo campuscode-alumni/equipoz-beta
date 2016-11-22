@@ -1,4 +1,4 @@
-<p><%= contract.customer.name %></p>
+<p><h1><%= contract.customer.name %></h1></p>
 <% contract.equipment.each do |equipment| %>
   <p><%= equipment.category %></p>
 <% end %>
@@ -16,8 +16,8 @@
   </p>
 <% else %>
   <p>
-    <%= link_to 'Emitir', delivery_receipt_contract_path(contract.id), method: :post %>
+    <%= link_to 'Emitir Retirada', delivery_receipt_contract_path(contract.id), method: :post %>
   </p>
 <% end %>
 
-<p><%= link_to 'Emitir Devolução', return_receipt_contract_path(contract.id), method: :post %></p>
+<p><%= link_to 'Emitir Devolução', new_contract_return_receipt_path(contract.id) %></p>
