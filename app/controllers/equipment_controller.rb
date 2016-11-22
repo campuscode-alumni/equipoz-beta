@@ -1,6 +1,7 @@
 class EquipmentController < ApplicationController
-	
+
   def new
+		@categories = Category.all
     @equipment = Equipment.new
 	end
 
@@ -25,7 +26,7 @@ private
 
   def equipment_params
     params.require(:equipment).permit(
-      :category, 
+      :category_id,
       :serial_number,
       :acquisition_date,
       :replacement_value,
@@ -34,4 +35,3 @@ private
   end
 
 end
- 

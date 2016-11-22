@@ -5,12 +5,12 @@ feature 'User visit contracts page' do
     equipment = create(:equipment)
 
     contract_01 = create(:contract, equipment_ids: [equipment.id])
-    contract_02 = create(:contract, total_amount:450.90, equipment_ids: [equipment.id])
+    contract_02 = create(:contract, total_amount:450.90, equipment: [equipment])
 
     visit contracts_path
 
     expect(page).to have_content('Contratos')
-    expect(page).to have_content(contract_01.equipment.first.category)
+    expect(page).to have_content(contract_01.equipment.first.description)
     expect(page).to have_content(contract_01.rental_period)
     expect(page).to have_content(contract_01.delivery_address)
     expect(page).to have_content(contract_01.contact)
@@ -19,7 +19,7 @@ feature 'User visit contracts page' do
     expect(page).to have_content(contract_01.discount)
     expect(page).to have_content(contract_01.total_amount)
 
-    expect(page).to have_content(contract_02.equipment.first.category)
+    expect(page).to have_content(contract_02.equipment.first.description)
     expect(page).to have_content(contract_02.rental_period)
     expect(page).to have_content(contract_02.delivery_address)
     expect(page).to have_content(contract_02.contact)
