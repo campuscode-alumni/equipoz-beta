@@ -85,15 +85,6 @@ ActiveRecord::Schema.define(version: 20161123222147) do
     t.index ["equipment_id"], name: "index_rental_equipments_on_equipment_id"
   end
 
-  create_table "retal_equipments", force: :cascade do |t|
-    t.integer  "contract_id"
-    t.integer  "equipment_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["contract_id"], name: "index_retal_equipments_on_contract_id"
-    t.index ["equipment_id"], name: "index_retal_equipments_on_equipment_id"
-  end
-
   create_table "return_receipts", force: :cascade do |t|
     t.string   "employee"
     t.string   "document"
