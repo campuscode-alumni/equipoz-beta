@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
 	resources :category_amounts, only: [:new, :create, :show]
 
-  resources :contracts, only: [:index, :new, :create, :show, :update] do
+  resources :contracts, only: [:index, :new, :create, :show] do
 		resources :return_receipts, only: [:new, :create]
 
     member do
@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       post 'delivery_receipt', to: 'delivery_receipts#create'
 
 			get 'return_receipt', to: 'return_receipts#show'
+
+      put 'finish', to: 'finish_contracts#update'
     end
   end
 end

@@ -1,5 +1,4 @@
 class ContractsController < ApplicationController
-  before_action :get_contract, only: [:show, :update]
   before_action :get_attibutes, only: [:new]
 
   def index
@@ -24,12 +23,7 @@ class ContractsController < ApplicationController
   end
 
   def show
-  end
-
-  def update
-    if @contract.update(contract_params)
-      redirect_to contracts_path
-    end
+    @contract = Contract.find(params[:id])
   end
 
   private
@@ -38,9 +32,6 @@ class ContractsController < ApplicationController
         :contact, :payment_method, :amount, :discount, :total_amount, :finished, equipment_ids: [])
     end
 
-    def get_contract
-      @contract = Contract.find(params[:id])
-    end
     def get_attibutes
       @equipment = Equipment.where(available: true)
     end
