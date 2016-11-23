@@ -1,7 +1,18 @@
 <h1>Contratos</h1>
 
 <% if @contracts.any? %>
-  <%= render @contracts %>
+  <table class="table">
+    <tr>
+      <th>#</th>
+      <th>Cliente</th>
+      <th>Preço</th>
+      <th>Desconto</th>
+      <th>Preço Final</th>
+      <th>Recibos</th>
+    </tr>
+    <%= render @contracts %>
+  </table>
+  
 <% else %>
 
   Não há contratos
