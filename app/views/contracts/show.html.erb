@@ -10,6 +10,7 @@
 <p><%= @contract.discount %></p>
 <p><%= @contract.total_amount %></p>
 
+
 <% if @contract.delivery_receipt %>
   <p>
     <%= link_to 'Visualizar', delivery_receipt_contract_path(@contract.id) %>
@@ -29,3 +30,5 @@
     <%= link_to 'Visualizar', return_receipt_contract_path(@contract.id) %>
   </p>
 <% end %>
+
+<%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>

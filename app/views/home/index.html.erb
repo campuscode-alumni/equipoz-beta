@@ -1,1 +1,4 @@
-<%= link_to 'Painel Administrativo', contracts_path %> 
+<%= link_to 'Painel Administrativo', contracts_path %>
+<% @categories.each do |category| %>
+  <%= category.name %> 
+<% end %>

@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
-	root 'home#index'
-
+  root to: 'home#index'
+	
 	resources :equipment, only: [:new, :create, :show]
 
 	resources :categories, only: [:new, :create, :show]
 
   resources :customers, only: [:new, :create, :show]
+
+	resources :category_amounts, only: [:new, :create, :show]
 
   resources :contracts, only: [:index, :new, :create, :show] do
 		resources :return_receipts, only: [:new, :create]

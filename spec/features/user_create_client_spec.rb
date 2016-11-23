@@ -1,6 +1,14 @@
 require 'rails_helper'
 
-feature 'User create client' do
+feature 'User create custormer' do
+
+    scenario 'visiting #new' do
+      visit root_path
+      click_on 'Painel Administrativo'
+      click_on 'Cadastrar Cliente'
+      expect(new_customer_path)
+    end
+
     scenario 'successfully'do
      customer = Customer.new(name: 'Rodrigo',
                               legal_name: 'Clockwork',

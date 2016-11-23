@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 feature 'User register tools' do
+
+	scenario 'visiting #new' do
+		visit root_path
+		click_on 'Painel Administrativo'
+		click_on 'Novo Equipamento'
+		expect(new_equipment_path)
+	end
+
 	scenario 'successfully access the register page' do
 
 		visit new_equipment_path
