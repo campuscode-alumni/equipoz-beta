@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123213307) do
+ActiveRecord::Schema.define(version: 20161123222147) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -35,9 +35,10 @@ ActiveRecord::Schema.define(version: 20161123213307) do
     t.float    "amount"
     t.float    "discount"
     t.float    "total_amount"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "customer_id"
+    t.boolean  "finished",         default: false
     t.index ["customer_id"], name: "index_contracts_on_customer_id"
   end
 
