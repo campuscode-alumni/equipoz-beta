@@ -12,9 +12,9 @@ feature 'User create a contract' do
   scenario 'successfully' do
 
 
-    equipment = create(:equipment)
-    contract = build(:contract)
 
+    contract = build(:contract)
+    equipment = Equipment.first
 
     visit new_contract_path
 
