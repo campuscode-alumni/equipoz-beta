@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122223517) do
+ActiveRecord::Schema.define(version: 20161123213307) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -68,9 +68,10 @@ ActiveRecord::Schema.define(version: 20161122223517) do
     t.float    "replacement_value"
     t.integer  "usage_limit"
     t.text     "description"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "category_id"
+    t.boolean  "available",         default: true
     t.index ["category_id"], name: "index_equipment_on_category_id"
   end
 
