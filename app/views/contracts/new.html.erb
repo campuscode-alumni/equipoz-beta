@@ -1,3 +1,4 @@
+<h1>Novo Contrato</h1>
 <%= simple_form_for @contract do |f| %>
   <%= f.input :customer_id, collection: @customer, label: 'Cliente' %>
   <%= f.association :equipment, collection: @equipment, label_method: :description, label: 'Equipamentos' %>

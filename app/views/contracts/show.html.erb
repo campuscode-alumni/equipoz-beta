@@ -1,4 +1,4 @@
-<h1> <%= @contract.customer.name %> </h1>
+<h1><%= @contract.customer.name %></h1>
 <% @contract.equipment.each do |equipment| %>
   <p><%= equipment.description %></p>
 <% end %>
@@ -9,4 +9,26 @@
 <p><%= @contract.amount %></p>
 <p><%= @contract.discount %></p>
 <p><%= @contract.total_amount %></p>
+
+
+<% if @contract.delivery_receipt %>
+  <p>
+    <%= link_to 'Visualizar', delivery_receipt_contract_path(@contract.id) %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to 'Emitir Retirada', delivery_receipt_contract_path(@contract.id), method: :post %>
+  </p>
+<% end %>
+
+<% unless @contract.return_receipt %>
+  <p>
+    <%= link_to 'Emitir Devolução', new_contract_return_receipt_path(@contract.id) %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to 'Visualizar', return_receipt_contract_path(@contract.id) %>
+  </p>
+<% end %>
+
 <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>

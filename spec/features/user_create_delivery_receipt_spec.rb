@@ -6,7 +6,7 @@ feature 'user create delivery receipt' do
 
     visit contracts_path
 
-    expect(page).to have_content 'Emitir'
+    expect(page).to have_content 'Emitir Retirada'
   end
 
   scenario "User click on 'Emitir' and visit delivery receipt page" do
@@ -15,7 +15,7 @@ feature 'user create delivery receipt' do
 
     visit contracts_path
 
-    click_on 'Emitir'
+    click_on 'Emitir Retirada'
 
     expect(page).to have_content('Recibo de Entrega')
     expect(page).to have_content(contract.contact)

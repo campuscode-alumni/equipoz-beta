@@ -1,20 +1,19 @@
-<% contract.equipment.each do |equipment| %>
-  <p><%= equipment.description %></p>
-<% end %>
-<p><%= contract.rental_period %></p>
-<p><%= contract.delivery_address %></p>
-<p><%= contract.contact %></p>
-<p><%= contract.payment_method %></p>
-<p><%= contract.amount %></p>
-<p><%= contract.discount %></p>
-<p><%= contract.total_amount %></p>
-
-<% if contract.delivery_receipt %>
-  <p>
-    <%= link_to 'Visualizar', delivery_receipt_contract_path(contract.id) %>
-  </p>
-<% else %>
-  <p>
-    <%= link_to 'Emitir', delivery_receipt_contract_path(contract.id), method: :post %>
-  </p> 
-<% end %>
+<tr>
+  <td><%= contract.id %></td>
+  <td><%= contract.customer.name %></td>
+  <td><%= contract.amount %></td>
+  <td><%= contract.discount %></td>
+  <td><%= contract.total_amount %></td>
+  <% if contract.delivery_receipt %>
+    <td>
+      <%= link_to 'Visualizar', delivery_receipt_contract_path(contract.id) %>
+    </td>
+  <% else %>
+    <td>
+      <%= link_to 'Emitir Retirada', delivery_receipt_contract_path(contract.id), method: :post %>
+    </td>
+  <% end %>
+  <td>
+    <%= link_to 'Emitir Devolução', new_contract_return_receipt_path(contract.id) %>
+  </td>
+</tr>
