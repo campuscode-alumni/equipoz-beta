@@ -1,4 +1,5 @@
 class ContractsController < ApplicationController
+  before_action :get_contract, only: [:show, :update]
   before_action :get_attibutes, only: [:new]
 
   def index
@@ -23,17 +24,24 @@ class ContractsController < ApplicationController
   end
 
   def show
-    @contract = Contract.find(params[:id])
+  end
+
+  def update
+    if @contract.update(contract_params)
+      redirect_to contracts_path
+    end
   end
 
   private
     def contract_params
       params.require(:contract).permit(:customer_id, :rental_period, :delivery_address,
-        :contact, :payment_method, :amount, :discount, :total_amount, equipment_ids: [])
+        :contact, :payment_method, :amount, :discount, :total_amount, :finished, equipment_ids: [])
     end
 
+    def get_contract
+      @contract = Contract.find(params[:id])
+    end
     def get_attibutes
       @equipment = Equipment.where(available: true)
     end
-
 end

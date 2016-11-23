@@ -6,5 +6,6 @@ FactoryGirl.define do
     replacement_value 100.5
     usage_limit 10
     description "Makita 120v"
+    available true
   end
 end

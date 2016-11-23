@@ -1,5 +1,5 @@
 <tr>
-  <td><%= contract.id %></td>
+  <td><%= link_to contract.id, contract_path(contract.id) %></td>
   <td><%= contract.customer.name %></td>
   <td><%= contract.amount %></td>
   <td><%= contract.discount %></td>
@@ -15,5 +15,8 @@
   <% end %>
   <td>
     <%= link_to 'Emitir Devolução', new_contract_return_receipt_path(contract.id) %>
+  </td>
+  <td>
+    <%= contract.finished ? 'Finalizado' : 'Aberto' %>
   </td>
 </tr>
