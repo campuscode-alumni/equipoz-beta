@@ -1,4 +1,15 @@
-<%= link_to 'Painel Administrativo', contracts_path %>
-<% @categories.each do |category| %>
-  <%= category.name %> 
-<% end %>
+<h1>Aluguel de Equipamentos</h1>
+<div class="row">
+  <% @categories.each do |category| %>
+  <div class="col-md-4 text-center">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <img src="http://placehold.it/150x150">
+        <h3><%= category.name %></h3>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<%= link_to 'Painel Administrativo', contracts_path, class: 'btn btn-default' %>
