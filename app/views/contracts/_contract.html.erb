@@ -1,9 +1,11 @@
+
 <tr>
   <td><%= contract.id %></td>
   <td><%= contract.customer.name %></td>
   <td><%= contract.amount %></td>
   <td><%= contract.discount %></td>
   <td><%= contract.total_amount %></td>
+
   <% if contract.delivery_receipt %>
     <td>
       <%= link_to 'Visualizar', delivery_receipt_contract_path(contract.id) %>
@@ -13,7 +15,15 @@
       <%= link_to 'Emitir Retirada', delivery_receipt_contract_path(contract.id), method: :post %>
     </td>
   <% end %>
+
   <td>
-    <%= link_to 'Emitir Devolução', new_contract_return_receipt_path(contract.id) %>
+    <%= link_to 'Emitir Devolução', new_contract_return_receipt_path(contract.id) if contract.delivery_receipt %>
+  </td>
+  <td>
+    <%= link_to 'Visualizar retorno', return_receipt_contract_path(contract.id) if contract.return_receipt%>
+  </td>
+
+  <td>
+    <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>
   </td>
 </tr>
