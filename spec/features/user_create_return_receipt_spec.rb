@@ -36,12 +36,16 @@ feature 'User create return receipt' do
 
     visit contracts_path
 
+    click_on 'Emitir Retirada'
+
+    visit contracts_path
+
     click_on 'Emitir Devolução'
 
     fill_in 'Funcionario', with: return_receipt.employee
     fill_in 'Documento', with: return_receipt.document
 
-    click_on 'Criar Recibo de Devolução'
+    click_on 'Emitir Devolução'
 
     expect(page).to have_content return_receipt.employee
     expect(page).to have_content return_receipt.document
@@ -79,12 +83,16 @@ feature 'User create return receipt' do
                                total_amount: 2330.0)
     visit contracts_path
 
+    click_on 'Emitir Retirada'
+
+    visit contracts_path
+
     click_on 'Emitir Devolução'
 
     fill_in 'Funcionario', with: ''
     fill_in 'Documento', with: ''
 
-    click_on 'Criar Recibo de Devolução'
+    click_on 'Emitir Devolução'
 
     expect(page).to have_content 'Não é possível criar o recibo de devolução'
   end
@@ -124,9 +132,9 @@ feature 'User create return receipt' do
 
   contract.save
 
-  visit contract_path contract
+  visit contracts_path
 
-  expect(page).to have_content('Visualizar')
+  expect(page).to have_content('Visualizar retorno')
 
   end
 end
