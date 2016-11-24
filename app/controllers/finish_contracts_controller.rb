@@ -13,5 +13,4 @@ class FinishContractsController < ApplicationController
   def get_contract
     @contract = Contract.find(params[:id])
   end
-
 end

@@ -8,6 +8,6 @@ class Equipment < ApplicationRecord
             presence: true
 
   has_many :rental_equipments
-  has_many :contracts, :through => :rental_equipments
+  has_many :contracts, through: :rental_equipments
   belongs_to :category
 end

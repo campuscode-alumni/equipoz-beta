@@ -1,0 +1,12 @@
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+AllCops:
+  Exclude:
+   - db/**/*
+   - spec/spec_helper.rb
+   - spec/rails_helper.rb
+   - Rakefile
+   - bin/**/*
+   - config/**/*

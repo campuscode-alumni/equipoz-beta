@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'User create category' do
-
   scenario 'visiting #new' do
     visit root_path
     click_on 'Painel Administrativo'
@@ -10,7 +9,6 @@ feature 'User create category' do
   end
 
   scenario 'successfully' do
-
     category = build(:category)
 
     visit new_category_path
@@ -30,7 +28,6 @@ feature 'User create category' do
   end
 
   scenario 'Category must be unique' do
-
     category = create(:category, name: 'Furadeira')
 
     visit new_category_path
@@ -39,7 +36,6 @@ feature 'User create category' do
     click_on 'Criar Categoria'
 
     expect(page).to have_content 'has already been taken'
-
   end
 
   scenario 'and can go back to contract#index' do
@@ -47,5 +43,4 @@ feature 'User create category' do
     click_on 'Voltar'
     expect(contracts_path)
   end
-
 end

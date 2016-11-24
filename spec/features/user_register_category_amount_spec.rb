@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 feature 'User can register an amount by category' do
-
   scenario 'successfully' do
-
     category_amount = build(:category_amount)
 
     visit new_category_amount_path
