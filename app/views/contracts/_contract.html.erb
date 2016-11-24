@@ -17,16 +17,14 @@
   <% end %>
 
   <td>
-    <%= link_to 'Emitir Devolução', new_contract_return_receipt_path(contract.id) if contract.delivery_receipt %>
-  </td>
-  <td>
-    <%= link_to 'Visualizar retorno', return_receipt_contract_path(contract.id) if contract.return_receipt%>
+    <%= return_receipt_helper(contract) if contract.delivery_receipt %>
   </td>
 
   <td>
-    <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>
-  </td>
-  <td>
     <%= contract.finished ? 'Finalizado' : 'Aberto' %>
+  </td>
+  
+  <td>
+    <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>
   </td>
 </tr>

@@ -127,6 +127,8 @@ feature 'User create return receipt' do
                              discount: 1000.0,
                              total_amount: 2330.0)
 
+  delivery_receipt = create(:delivery_receipt, contract: contract)
+
   contract.return_receipt = ReturnReceipt.new(employee: 'João',
                                               document: '123')
 
