@@ -1,5 +1,4 @@
 class CustomersController < ApplicationController
-
   def new
     @customer = Customer.new
   end
@@ -20,7 +19,11 @@ class CustomersController < ApplicationController
   end
 
   private
-    def cust_params
-      params.require(:customer).permit(:name, :legal_name, :customer_type, :document, :fiscal_number, :contact_name, :phone_number, :email, :address)
-    end
+
+  def cust_params
+    params.require(:customer).permit(
+      :name, :legal_name, :customer_type, :document,
+      :fiscal_number, :contact_name, :phone_number, :email, :address
+    )
+  end
 end

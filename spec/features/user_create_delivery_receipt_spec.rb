@@ -10,7 +10,6 @@ feature 'user create delivery receipt' do
   end
 
   scenario "User click on 'Emitir' and visit delivery receipt page" do
-
     contract = create(:contract)
 
     visit contracts_path

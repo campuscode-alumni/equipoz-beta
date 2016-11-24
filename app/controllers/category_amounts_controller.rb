@@ -1,5 +1,5 @@
 class CategoryAmountsController < ApplicationController
-  before_action :get_attributes, only: [:new]
+  before_action :set_attributes, only: [:new]
 
   def new
     @category_amount = CategoryAmount.new
@@ -11,7 +11,7 @@ class CategoryAmountsController < ApplicationController
     if @category_amount.save
       redirect_to category_amount_path(@category_amount)
     else
-      get_attributes
+      set_attributes
       flash.now[:errors] = "can't be blank"
       render :new
     end
@@ -31,7 +31,7 @@ class CategoryAmountsController < ApplicationController
     )
   end
 
-  def get_attributes
+  def set_attributes
     @categories = Category.all
     @rental_periods = [1, 3, 5, 7, 15, 20, 30]
   end

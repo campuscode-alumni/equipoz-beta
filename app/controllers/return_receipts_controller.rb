@@ -1,5 +1,4 @@
 class ReturnReceiptsController < ApplicationController
-
   def show
     @contract = Contract.find params[:id]
   end
@@ -20,7 +19,6 @@ class ReturnReceiptsController < ApplicationController
       flash.now[:error] = 'Não é possível criar o recibo de devolução'
       render :new
     end
-
   end
 
   private

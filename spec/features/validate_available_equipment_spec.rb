@@ -4,17 +4,17 @@ feature 'Validate available equipment' do
   scenario 'when user create contract' do
     category = create(:category)
     equipment_1 = create(:equipment,
-                          category: category,
-                          description: 'Equipamento 1',
-                          available: false)
+                         category: category,
+                         description: 'Equipamento 1',
+                         available: false)
     equipment_2 = create(:equipment,
-                          category: category,
-                          description: 'Equipamento 2',
-                          available: false)
+                         category: category,
+                         description: 'Equipamento 2',
+                         available: false)
     available_equipment = create(:equipment,
-                                  category: category,
-                                  description: 'Equipamento Válido',
-                                  available: true)
+                                 category: category,
+                                 description: 'Equipamento Válido',
+                                 available: true)
 
     visit new_contract_path
 
@@ -26,9 +26,9 @@ feature 'Validate available equipment' do
   scenario 'when user finish contract' do
     category = create(:category)
     equipment = create(:equipment,
-                        category: category,
-                        description: 'Equipamento 1',
-                        available: false)
+                       category: category,
+                       description: 'Equipamento 1',
+                       available: false)
     contract = create(:contract, finished: false, equipment: [equipment])
     delivery_receipt = create(:delivery_receipt, contract: contract)
     return_receipt = create(:return_receipt, contract: contract)
