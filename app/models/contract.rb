@@ -12,4 +12,8 @@ class Contract < ApplicationRecord
             :delivery_address,
             :payment_method,
             :delivery_address, presence: true
+
+  def contract_code
+    (created_at + id).to_i
+  end
 end
