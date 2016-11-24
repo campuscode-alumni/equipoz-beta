@@ -10,6 +10,8 @@ script:
 notifications:
   email:
     recipients:
-      - emails@do_time.com
+      - alan@campuscode.com.br
+      - vinylimaz@live.com
+      - rcecosta@gmail.com
     on_success: always
     on_failure: always
