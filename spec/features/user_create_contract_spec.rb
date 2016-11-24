@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'User create a contract' do
-
   scenario 'visiting #new' do
     visit root_path
     click_on 'Painel Administrativo'
@@ -29,7 +28,6 @@ feature 'User create a contract' do
     expect(page).to have_content(contract.amount)
     expect(page).to have_content(contract.discount)
     expect(page).to have_content(contract.total_amount)
-
   end
   scenario 'unsuccessfully' do
     visit new_contract_path
@@ -47,7 +45,7 @@ feature 'User create a contract' do
     visit new_contract_path
 
     fill_form(contract, equipment)
-    
+
     click_on 'Gerar Contrato'
 
     visit new_contract_path

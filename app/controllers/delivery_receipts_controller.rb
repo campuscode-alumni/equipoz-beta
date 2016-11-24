@@ -1,5 +1,4 @@
 class DeliveryReceiptsController < ApplicationController
-  
   def create
     @delivery_receipt = DeliveryReceipt.create(contract_id: params[:id])
 
@@ -17,4 +16,3 @@ class DeliveryReceiptsController < ApplicationController
     end
   end
 end
- 

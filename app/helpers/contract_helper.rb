@@ -3,7 +3,7 @@ module ContractHelper
     return 'Finalizado' if @contract.finished
 
     link_to('Finalizar Contrato', finish_contract_path(@contract.id),
-      method: :put) if @contract.return_receipt
+            method: :put) if @contract.return_receipt
   end
 
   def return_receipt_helper(contract)
