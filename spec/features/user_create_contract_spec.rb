@@ -56,15 +56,22 @@ feature 'User create a contract' do
   private
 
   def fill_form(contract, equipment)
-    select contract.customer.name, from: 'Cliente'
-    select equipment.description, from: 'Equipamentos'
-    select contract.rental_period, from: 'Prazo de Locação'
+    select_form(contract, equipment)
+    fill_in_form(contract)
+  end
 
+  def fill_in_form(contract)
     fill_in 'Endereço de Entrega', with: contract.delivery_address
     fill_in 'Responsável', with: contract.contact
-    select contract.payment_method, from: 'Formas de Pagamento'
     fill_in 'Preço', with: contract.amount
     fill_in 'Desconto', with: contract.discount
     fill_in 'Preço Final', with: contract.total_amount
+  end
+
+  def select_form(contract, equipment)
+    select contract.customer.name, from: 'Cliente'
+    select equipment.description, from: 'Equipamentos'
+    select contract.rental_period, from: 'Prazo de Locação'
+    select contract.payment_method, from: 'Formas de Pagamento'
   end
 end

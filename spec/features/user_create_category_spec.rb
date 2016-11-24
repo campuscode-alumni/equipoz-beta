@@ -28,7 +28,7 @@ feature 'User create category' do
   end
 
   scenario 'Category must be unique' do
-    category = create(:category, name: 'Furadeira')
+    create(:category, name: 'Furadeira')
 
     visit new_category_path
 

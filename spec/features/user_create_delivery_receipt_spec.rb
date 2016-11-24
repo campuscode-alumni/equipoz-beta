@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'user create delivery receipt' do
   scenario 'User visit contract page to create delivery receipt' do
-    contract = create(:contract)
+    create(:contract)
 
     visit contracts_path
 
@@ -33,7 +33,7 @@ feature 'user create delivery receipt' do
 
   scenario 'User visit contract page to see delivery receipt already exist' do
     contract = create(:contract)
-    delivery_receipt = create(:delivery_receipt, contract: contract)
+    create(:delivery_receipt, contract: contract)
 
     visit contracts_path
 
@@ -42,7 +42,7 @@ feature 'user create delivery receipt' do
 
   scenario "User click on 'Visualizar' and visit delivery receipt page" do
     contract = create(:contract)
-    delivery_receipt = create(:delivery_receipt, contract: contract)
+    create(:delivery_receipt, contract: contract)
 
     visit contracts_path
 

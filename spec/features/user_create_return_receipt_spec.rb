@@ -24,15 +24,15 @@ feature 'User create return receipt' do
                                  usage_limit: 2,
                                  description: 'Super potente')
 
-    contract = Contract.create(customer: customer,
-                               equipment: [equipment],
-                               rental_period: 3.days,
-                               delivery_address: 'Av. Paulista',
-                               contact: 'Alan',
-                               payment_method: 'Propina',
-                               amount: 3330.0,
-                               discount: 1000.0,
-                               total_amount: 2330.0)
+    Contract.create(customer: customer,
+                    equipment: [equipment],
+                    rental_period: 3.days,
+                    delivery_address: 'Av. Paulista',
+                    contact: 'Alan',
+                    payment_method: 'Propina',
+                    amount: 3330.0,
+                    discount: 1000.0,
+                    total_amount: 2330.0)
 
     visit contracts_path
 
@@ -71,15 +71,15 @@ feature 'User create return receipt' do
                                  usage_limit: 2,
                                  description: 'Super potente')
 
-    contract = Contract.create(customer: customer,
-                               equipment: [equipment],
-                               rental_period: 3.days,
-                               delivery_address: 'Av. Paulista',
-                               contact: 'Alan',
-                               payment_method: 'Propina',
-                               amount: 3330.0,
-                               discount: 1000.0,
-                               total_amount: 2330.0)
+    Contract.create(customer: customer,
+                    equipment: [equipment],
+                    rental_period: 3.days,
+                    delivery_address: 'Av. Paulista',
+                    contact: 'Alan',
+                    payment_method: 'Propina',
+                    amount: 3330.0,
+                    discount: 1000.0,
+                    total_amount: 2330.0)
     visit contracts_path
 
     click_on 'Emitir Retirada'
@@ -125,7 +125,7 @@ feature 'User create return receipt' do
                                discount: 1000.0,
                                total_amount: 2330.0)
 
-    delivery_receipt = create(:delivery_receipt, contract: contract)
+    create(:delivery_receipt, contract: contract)
 
     contract.return_receipt = ReturnReceipt.new(employee: 'João',
                                                 document: '123')
