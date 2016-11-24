@@ -15,16 +15,7 @@ feature 'User create a contract' do
 
     visit new_contract_path
 
-    select contract.customer.name, from: 'Cliente'
-    select equipment.description, from: 'Equipamentos'
-    select contract.rental_period, from: 'Prazo de Locação'
-
-    fill_in 'Endereço de Entrega', with: contract.delivery_address
-    fill_in 'Responsável', with: contract.contact
-    select contract.payment_method, from: 'Formas de Pagamento'
-    fill_in 'Preço', with: contract.amount
-    fill_in 'Desconto', with: contract.discount
-    fill_in 'Preço Final', with: contract.total_amount
+    fill_form(contract, equipment)
 
     click_on 'Gerar Contrato'
 
@@ -54,11 +45,28 @@ feature 'User create a contract' do
     contract = build(:contract, equipment: [equipment])
 
     visit new_contract_path
-    #TODO - falta fill_in
+
+    fill_form(contract, equipment)
+    
     click_on 'Gerar Contrato'
 
     visit new_contract_path
 
     expect(page).to_not have_content(equipment.description)
+  end
+
+  private
+
+  def fill_form(contract, equipment)
+    select contract.customer.name, from: 'Cliente'
+    select equipment.description, from: 'Equipamentos'
+    select contract.rental_period, from: 'Prazo de Locação'
+
+    fill_in 'Endereço de Entrega', with: contract.delivery_address
+    fill_in 'Responsável', with: contract.contact
+    select contract.payment_method, from: 'Formas de Pagamento'
+    fill_in 'Preço', with: contract.amount
+    fill_in 'Desconto', with: contract.discount
+    fill_in 'Preço Final', with: contract.total_amount
   end
 end
