@@ -10,16 +10,12 @@ feature 'User create a contract' do
   end
 
   scenario 'successfully' do
-
-
-
     contract = build(:contract)
     equipment = Equipment.first
 
     visit new_contract_path
 
     select contract.customer.name, from: 'Cliente'
-
     select equipment.description, from: 'Equipamentos'
     select contract.rental_period, from: 'Prazo de Locação'
 
@@ -51,6 +47,18 @@ feature 'User create a contract' do
 
     expect(page).to have_current_path(contracts_path)
     expect(page).to have_content('Não foi possível criar contrato')
+  end
 
+  scenario 'change equipment status' do
+    equipment = create(:equipment, available: true)
+    contract = build(:contract, equipment: [equipment])
+
+    visit new_contract_path
+    #TODO - falta fill_in
+    click_on 'Gerar Contrato'
+
+    visit new_contract_path
+
+    expect(page).to_not have_content(equipment.description)
   end
 end
