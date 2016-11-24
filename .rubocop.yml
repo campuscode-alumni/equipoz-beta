@@ -5,8 +5,8 @@ Style/FrozenStringLiteralComment:
 AllCops:
   Exclude:
    - db/**/*
-   - spec/spec_helper.rb
-   - spec/rails_helper.rb
    - Rakefile
    - bin/**/*
    - config/**/*
+   - Gemfile
+   - spec/**/*

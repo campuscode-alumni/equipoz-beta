@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-  before_action :get_attibutes, only: [:new]
+  before_action :set_attibutes, only: [:new]
 
   def index
     @contracts = Contract.all
@@ -17,7 +17,7 @@ class ContractsController < ApplicationController
       # binding.pry
       redirect_to @contract
     else
-      get_attibutes
+      set_attibutes
 
       flash.now[:error] = 'Não foi possível criar contrato'
       render :new
@@ -32,19 +32,13 @@ class ContractsController < ApplicationController
 
   def contract_params
     params.require(:contract).permit(
-      :customer_id,
-      :rental_period,
-      :delivery_address,
-      :contact,
-      :payment_method,
-      :amount,
-      :discount,
-      :total_amount,
-      :finished, equipment_ids: []
+      :customer_id, :rental_period, :delivery_address, :contact,
+      :payment_method, :amount, :discount, :total_amount, :finished,
+      equipment_ids: []
     )
   end
 
-  def get_attibutes
+  def set_attibutes
     @equipment = Equipment.where(available: true)
   end
 end
