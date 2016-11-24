@@ -10,7 +10,6 @@
       <th>Preço Final</th>
       <th colspan="2">Recibos</th>
       <th>Status</th>
-      <th></th>
     </tr>
     <%= render @contracts %>
   </table>
@@ -25,4 +24,5 @@
   <%= link_to 'Cadastrar Cliente', new_customer_path, class: 'btn btn-default'  %>
   <%= link_to 'Novo Equipamento', new_equipment_path, class: 'btn btn-default'  %>
   <%= link_to 'Nova Categoria', new_category_path, class: 'btn btn-default'  %>
+  <%= link_to 'Voltar', contracts_path, class: 'btn btn-default right' %>
 </nav>
