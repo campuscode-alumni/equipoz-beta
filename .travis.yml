@@ -7,6 +7,12 @@ before_script:
 script:
   - bundle exec rubocop
   - bundle exec rspec spec
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "8b39162c-dfaf-4d4a-9645-f8102d24fa77"
+
 notifications:
   email:
     recipients:
