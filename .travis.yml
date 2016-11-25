@@ -7,6 +7,16 @@ before_script:
 script:
   - bundle exec rubocop
   - bundle exec rspec spec
+
+deploy:
+  provider: heroku
+  app: equipoz-beta
+  api_key:
+    secure: "8b39162c-dfaf-4d4a-9645-f8102d24fa77"
+  strategy: git-ssh
+  on: heroku
+  run: rails db:migrate
+
 notifications:
   email:
     recipients:
