@@ -8,6 +8,6 @@ FactoryGirl.define do
     amount 1000.5
     discount 100.0
     total_amount 900.5
-    equipment { create_list(:equipment, 1) }
+    equipment { create_list(:equipment, 2) }
   end
 end
