@@ -10,7 +10,7 @@ script:
 
 deploy:
   provider: heroku
-  app: equipoz-beta
+  app: limitless-reaches-99637
   api_key:
     secure: "8b39162c-dfaf-4d4a-9645-f8102d24fa77"
   strategy: git-ssh
