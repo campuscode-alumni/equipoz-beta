@@ -6,11 +6,11 @@ class Contract < ApplicationRecord
   has_many :equipment
   has_many :equipment, through: :rental_equipments
   validates :customer,
-            :equipment,
             :rental_period,
             :contact,
             :delivery_address,
             :payment_method,
+            :equipment,
             :delivery_address, presence: true
 
   def contract_code

@@ -9,6 +9,8 @@
   <%= f.input :amount, label: 'Preço' %>
   <%= f.input :discount, label: 'Desconto' %>
   <%= f.input :total_amount, label: 'Preço Final' %>
-  <%= f.button :submit, 'Gerar Contrato' %>
+  <nav>
+    <%= f.button :submit, 'Gerar Contrato' %>
+    <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>
+  </nav>
 <% end %>
-<%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>

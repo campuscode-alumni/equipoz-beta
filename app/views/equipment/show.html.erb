@@ -1,7 +1,14 @@
-<%= @equipment.category.name %>
-<%= @equipment.serial_number %>
-<%= @equipment.acquisition_date %>
-<%= @equipment.replacement_value %>
-<%= @equipment.usage_limit %>
-<%= @equipment.description %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1><%= @equipment.description %></h1>
+  </div>
+  <div class="panel-body">
+    <p><strong>Categoria:</strong> <%= @equipment.category.name %></p>
+    <p><strong>Número Serial:</strong> <%= @equipment.serial_number %></p>
+    <p><strong>Data de Aquisição:</strong> <%= @equipment.acquisition_date %></p>
+    <p><strong>Valor de Reposição:</strong> <%= @equipment.replacement_value %></p>
+    <p><strong>Limite de Uso:</strong> <%= @equipment.usage_limit %></p>
+    <p></p>
+  </div>
+</div>
 <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>

@@ -9,6 +9,8 @@
   <%= f.input :phone_number, label: 'Telefone'%>
   <%= f.input :email, label: 'E-mail'%>
   <%= f.input :address, label: 'Endereço'%>
-  <%= f.button :submit, 'Cadastrar Cliente' %>
-<% end %>
-<%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>
+  <nav>    
+    <%= f.button :submit, 'Cadastrar Cliente' %>
+    <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>
+  </nav>
+  <% end %>

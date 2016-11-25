@@ -1,11 +1,15 @@
-<h1><%= @customer.name %></h1>
+<div class="panel panel-default">
+  <div class="panel-heading"><h1><%= @customer.name %></h1></div>
+  <div class="panel-body">
+    <p><strong>Razão Social:</strong> <%= @customer.legal_name %></p>
+    <p><strong>Tipo de Cliente:</strong> <%= @customer.customer_type %></p>
+    <p><strong>CPF/CNPJ:</strong> <%= @customer.document %></p>
+    <p><strong>Inscrição Estadual:</strong> <%= @customer.fiscal_number %></p>
+    <p><strong>Contato:</strong> <%= @customer.contact_name %></p>
+    <p><strong>Telefone:</strong> <%= @customer.phone_number %></p>
+    <p><strong>E-mail:</strong> <%= @customer.email %></p>
+    <p><strong>Endereço:</strong> <%= @customer.address %></p>
+  </div>
+</div>
 
-<p><%= @customer.legal_name %></p>
-<p><%= @customer.customer_type %></p>
-<p><%= @customer.document %></p>
-<p><%= @customer.fiscal_number %></p>
-<p><%= @customer.contact_name %></p>
-<p><%= @customer.phone_number %></p>
-<p><%= @customer.email %></p>
-<p><%= @customer.address %></p>
 <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>

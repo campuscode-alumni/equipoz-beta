@@ -1,42 +1,55 @@
-<h1><%= @contract.customer.name %></h1>
+<div class="panel panel-default">
+  <div class="panel-heading"><h1><%= @contract.customer.name %></h1></div>
+  <div class="panel-body">
+    <p><strong>Código:</strong> <%= @contract.contract_code %></p>
 
-<p>
-  Equipamentos:
+    <table class="table">
+      <% @contract.equipment.each_with_index do |equipment, index| %>
+      <tr>
+        <th>Equipamentos</th>
+        <th>Categoria</th>
+        <th>Descrição</th>
+      </tr>
+      <tr>
+        <td><%= "##{index + 1}"%></td>
+        <td><%= equipment.category.name %></td>
+        <td><%= equipment.description %></td>
+      </tr>
+      <% end %>
+    </table>
 
-  <% @contract.equipment.each do |equipment| %>
-    <p>Descrição: <%= equipment.description %></p>
-  <% end %>
-</p>
-<p>Prazo de Locação: <%= @contract.rental_period %></p>
-<p>Endereço de Entrega: <%= @contract.delivery_address %></p>
-<p>Contato: <%= @contract.contact %></p>
-<p>Método de Pagamento: <%= @contract.payment_method %></p>
-<p>Valor: <%= @contract.amount %></p>
-<p>Desconto: <%= @contract.discount %></p>
-<p>Valor Total: <%= @contract.total_amount %></p>
+    <p><strong>Prazo de Locação:</strong> <%= @contract.rental_period %></p>
+    <p><strong>Endereço de Entrega:</strong> <%= @contract.delivery_address %></p>
+    <p><strong>Contato:</strong> <%= @contract.contact %></p>
+    <p><strong>Método de Pagamento:</strong> <%= @contract.payment_method %></p>
+    <p><strong>Valor:</strong> <%= @contract.amount %></p>
+    <p><strong>Desconto:</strong> <%= @contract.discount %></p>
+    <p><strong>Valor Total:</strong> <%= @contract.total_amount %></p>
 
 
-<% if @contract.delivery_receipt %>
-  <p>
-    <%= link_to 'Visualizar Recibo de Retirada', delivery_receipt_contract_path(@contract.id) %>
-  </p>
-<% else %>
-  <p>
-    <%= link_to 'Emitir Retirada', delivery_receipt_contract_path(@contract.id), method: :post %>
-  </p>
-<% end %>
+    <% if @contract.delivery_receipt %>
+      <p>
+        <%= link_to 'Visualizar Recibo de Retirada', delivery_receipt_contract_path(@contract.id) %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to 'Emitir Retirada', delivery_receipt_contract_path(@contract.id), method: :post %>
+      </p>
+    <% end %>
 
-<% unless @contract.return_receipt %>
-  <p>
-    <%= link_to 'Emitir Devolução', new_contract_return_receipt_path(@contract.id) %>
-  </p>
-<% else %>
-  <p>
-    <%= link_to 'Visualizar Recibo de Devolução', return_receipt_contract_path(@contract.id) %>
-  </p>
-<% end %>
-<p>
-  <%= finish_contract_helper %>
-</p>
+    <% unless @contract.return_receipt %>
+      <p>
+        <%= link_to 'Emitir Devolução', new_contract_return_receipt_path(@contract.id) %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to 'Visualizar Recibo de Devolução', return_receipt_contract_path(@contract.id) %>
+      </p>
+    <% end %>
+    <p>
+      <%= finish_contract_helper %>
+    </p>
+  </div>
+</div>
 
 <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>

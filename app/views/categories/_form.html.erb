@@ -1,4 +1,7 @@
 <%= simple_form_for @category do |f| %>
   <%= f.input :name, label: 'Nome' %>
-  <%= f.button :submit, 'Criar Categoria' %>
+  <nav>
+    <%= f.button :submit, 'Criar Categoria' %>
+    <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>
+  </nav>
 <% end %>
