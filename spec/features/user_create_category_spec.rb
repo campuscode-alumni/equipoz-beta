@@ -24,7 +24,7 @@ feature 'User create category' do
 
     click_on 'Criar Categoria'
 
-    expect(page).to have_content "can't be blank"
+    expect(page).to have_content "não pode ficar em branco"
   end
 
   scenario 'Category must be unique' do
@@ -35,7 +35,7 @@ feature 'User create category' do
     fill_in 'Nome', with: 'Furadeira'
     click_on 'Criar Categoria'
 
-    expect(page).to have_content 'has already been taken'
+    expect(page).to have_content 'já está em uso'
   end
 
   scenario 'and can go back to contract#index' do
