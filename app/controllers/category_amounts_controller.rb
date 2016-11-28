@@ -12,7 +12,7 @@ class CategoryAmountsController < ApplicationController
       redirect_to category_amount_path(@category_amount)
     else
       set_attributes
-      flash.now[:errors] = "não pode ficar em branco"
+      flash.now[:errors] = 'não pode ficar em branco'
       render :new
     end
   end

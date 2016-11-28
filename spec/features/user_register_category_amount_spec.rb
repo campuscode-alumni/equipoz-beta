@@ -24,6 +24,6 @@ feature 'User can register an amount by category' do
 
     click_on 'Registrar Valor'
 
-    expect(page).to have_content "não pode ficar em branco"
+    expect(page).to have_content 'não pode ficar em branco'
   end
 end

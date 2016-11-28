@@ -24,7 +24,7 @@ feature 'User create category' do
 
     click_on 'Criar Categoria'
 
-    expect(page).to have_content "não pode ficar em branco"
+    expect(page).to have_content 'não pode ficar em branco'
   end
 
   scenario 'Category must be unique' do
