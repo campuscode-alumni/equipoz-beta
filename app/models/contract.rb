@@ -12,8 +12,20 @@ class Contract < ApplicationRecord
             :payment_method,
             :equipment,
             :delivery_address, presence: true
+  validate :available_equipment, on: :create
 
   def contract_code
     (created_at + id).to_i
+  end
+
+  def available_equipment
+    message = 'Equipamentos em uso: '
+    unavailable_equipment = Equipment.where(id: equipment_ids, available: false)
+
+    unavailable_equipment.each do |equipment|
+      message += "#{equipment.full_name}; "
+    end
+
+    errors.add(:equipment, message) unless unavailable_equipment.blank?
   end
 end

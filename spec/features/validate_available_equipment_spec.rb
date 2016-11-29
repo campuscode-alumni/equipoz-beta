@@ -28,7 +28,7 @@ feature 'Validate available equipment' do
     equipment = create(:equipment,
                        category: category,
                        description: 'Equipamento 1',
-                       available: false)
+                       available: true)
     contract = create(:contract, finished: false, equipment: [equipment])
     create(:delivery_receipt, contract: contract)
     create(:return_receipt, contract: contract)
@@ -40,5 +40,24 @@ feature 'Validate available equipment' do
     visit new_contract_path
 
     expect(page).to have_content(equipment.description)
+  end
+
+  scenario 'user try create contract with a unavailable equipment' do
+    category = create(:category)
+    equipment = create(:equipment,
+                       category: category,
+                       description: 'Equipamento 1',
+                       available: true)
+
+    visit new_contract_path
+
+    select equipment.full_name, from: 'Equipamentos'
+
+    equipment.update(available: false)
+
+    click_on 'Gerar Contrato'
+
+    expect(page).to have_content('Equipamentos em uso')
+    expect(page).to have_content(equipment.full_name)
   end
 end

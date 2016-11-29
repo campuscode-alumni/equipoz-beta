@@ -13,12 +13,23 @@ RSpec.describe Contract, type: :model do
 
   describe '#contract_code' do
     before do
-      @time_number = Time.now.to_datetime.to_i
-      @contract = create(:contract, created_at: @time_number)
+      @contract = create(:contract)
     end
 
     it 'should return correct contract code' do
-      expect(@contract.contract_code).to eq(@time_number + @contract.id)
+      expect(@contract.contract_code).to eq(
+        @contract.created_at.to_i + @contract.id
+      )
+    end
+  end
+
+  describe 'validate equipment' do
+    it 'should not save with invalid equipment' do
+      equipment = create(:equipment, available: false)
+
+      contract = build(:contract, equipment: [equipment])
+
+      expect(contract.valid?).to be_falsey
     end
   end
 end
