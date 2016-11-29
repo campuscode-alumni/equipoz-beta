@@ -5,7 +5,7 @@ feature 'User visit contracts page' do
     equipment = create(:equipment)
 
     contract_01 = create(:contract, equipment: [equipment])
-    contract_02 = create(:contract, total_amount: 450.90, equipment: [equipment])
+    contract_02 = create(:contract, equipment: [equipment])
 
     visit contracts_path
 

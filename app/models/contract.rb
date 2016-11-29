@@ -12,4 +12,19 @@ class Contract < ApplicationRecord
             :delivery_address,
             :payment_method,
             :delivery_address, presence: true
+
+  def amount
+    total = 0
+    equipment.each do |equipment|
+      period_amount = equipment.category_amounts.where(rental_period: rental_period).last
+      if period_amount
+         total += period_amount.amount
+      end
+    end
+    total
+  end
+
+  def total_amount
+    amount - discount
+  end
 end

@@ -26,9 +26,7 @@ feature 'User create a contract' do
     expect(page).to have_content(contract.delivery_address)
     expect(page).to have_content(contract.contact)
     expect(page).to have_content(contract.payment_method)
-    expect(page).to have_content(contract.amount)
     expect(page).to have_content(contract.discount)
-    expect(page).to have_content(contract.total_amount)
   end
   scenario 'unsuccessfully' do
     visit new_contract_path
@@ -41,9 +39,8 @@ feature 'User create a contract' do
 
   scenario 'change equipment status' do
 
-    equipment = []
-    equipment << create(:equipment, available: true)
-    contract = build(:contract, equipment: [equipment.first])
+    equipment = create_list(:equipment, 2, available: true)
+    contract = build(:contract, equipment: equipment)
 
     visit new_contract_path
 
@@ -58,22 +55,10 @@ feature 'User create a contract' do
 
 
   scenario 'and view amount calculated' do
-
-    category_amount = create(:category_amount)
-    equipment_one = create(:equipment, category: Category.first)
-    equipment_two = create(:equipment, category: Category.first)
-
-    contract = build(:contract, equipment: [equipment_one, equipment_two])
-
-    amount_one = equipment_one.category_amounts
-      .find_by(rental_period: contract.rental_period).amount
-
-    amount_two = equipment_two.category_amounts
-      .find_by(rental_period: contract.rental_period).amount
-
-    valor = amount_one + amount_two
-
-    equipment = [equipment_one, equipment_two]
+    category_amount = create(:category_amount, amount: 600)
+    valor = 1200
+    equipment = create_list(:equipment, 2, category: category_amount.category)
+    contract = build(:contract, equipment: equipment)
 
     visit new_contract_path
 
@@ -85,23 +70,11 @@ feature 'User create a contract' do
   end
 
   scenario 'and view total_amount calculated with discount' do
+    category_amount = create(:category_amount, amount: 600)
+    equipment = create_list(:equipment, 2, category: category_amount.category)
+    total = 1100
 
-    category_amount = create(:category_amount)
-    equipment_one = create(:equipment, category: Category.first)
-    equipment_two = create(:equipment, category: Category.first)
-
-    contract = build(:contract, equipment: [equipment_one, equipment_two])
-
-    amount_one = equipment_one.category_amounts
-      .find_by(rental_period: contract.rental_period).amount
-
-    amount_two = equipment_two.category_amounts
-      .find_by(rental_period: contract.rental_period).amount
-
-    valor = amount_one + amount_two
-    total = valor - contract.discount
-
-    equipment = [equipment_one, equipment_two]
+    contract = build(:contract, equipment: equipment, discount: 100)
 
     visit new_contract_path
 
@@ -109,11 +82,8 @@ feature 'User create a contract' do
 
     click_on 'Gerar Contrato'
 
-    expect(page).to have_content("Valor: #{valor}")
     expect(page).to have_content("Total: #{total}")
   end
-
-  private
 
   private
 
@@ -125,7 +95,6 @@ feature 'User create a contract' do
     def fill_in_form(contract)
       fill_in 'Endereço de Entrega', with: contract.delivery_address
       fill_in 'Responsável', with: contract.contact
-      fill_in 'Preço', with: contract.amount
       fill_in 'Desconto', with: contract.discount
     end
 

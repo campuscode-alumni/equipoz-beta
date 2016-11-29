@@ -6,9 +6,7 @@
   <%= f.input :delivery_address, label: 'Endereço de Entrega' %>
   <%= f.input :contact, label: 'Responsável' %>
   <%= f.input :payment_method, collection: ['a vista', 'parcelado'], label: 'Formas de Pagamento'  %>
-  <%= f.input :amount, label: 'Preço' %>
   <%= f.input :discount, label: 'Desconto' %>
-  <%= f.input :total_amount, label: 'Preço Final' %>
   <%= f.button :submit, 'Gerar Contrato' %>
 <% end %>
 <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>

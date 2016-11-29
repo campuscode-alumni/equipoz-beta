@@ -32,7 +32,7 @@ class ContractsController < ApplicationController
   def contract_params
     params.require(:contract).permit(
       :customer_id, :rental_period, :delivery_address, :contact,
-      :payment_method, :amount, :discount, :total_amount, :finished,
+      :payment_method, :discount, :finished,
       equipment_ids: []
     )
   end
