@@ -10,4 +10,8 @@ class Equipment < ApplicationRecord
   has_many :rental_equipments
   has_many :contracts, through: :rental_equipments
   belongs_to :category
+
+  def full_name
+    "##{serial_number} - #{category.name}: #{description}"
+  end
 end
