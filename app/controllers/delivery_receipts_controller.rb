@@ -7,6 +7,7 @@ class DeliveryReceiptsController < ApplicationController
 
   def show
     @contract = Contract.find_by(id: params[:id])
+    @customer = @contract.try(:customer)
 
     if @contract.nil?
       flash[:error] = 'Contrato inválido'
