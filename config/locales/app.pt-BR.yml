@@ -1,0 +1,4 @@
+pt-BR:
+  rental_period:
+    one: "%{count} dia"
+    other: "%{count} dias"
