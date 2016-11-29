@@ -14,7 +14,6 @@ class ContractsController < ApplicationController
     @contract = Contract.new(contract_params)
     if @contract.save
       @contract.equipment.update_all(available: false)
-      # binding.pry
       redirect_to @contract
     else
       set_attibutes
