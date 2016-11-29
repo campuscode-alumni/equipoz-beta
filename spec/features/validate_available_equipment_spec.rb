@@ -51,7 +51,7 @@ feature 'Validate available equipment' do
 
     visit new_contract_path
 
-    select equipment.full_name, from: 'Equipamentos'
+    check equipment.full_name
 
     equipment.update(available: false)
 

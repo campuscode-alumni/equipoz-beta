@@ -11,7 +11,6 @@ feature 'User create a contract' do
   scenario 'successfully' do
     equipment = create(:equipment)
     contract = build(:contract, equipment: [equipment])
-    equipment_name = get_equipment_name(equipment)
 
     visit new_contract_path
 
@@ -21,7 +20,7 @@ feature 'User create a contract' do
 
     expect(page).not_to have_content('Não foi possível criar contrato')
     expect(page).to have_css('h1', text: contract.customer.name)
-    expect(page).to have_content(equipment_name)
+    expect(page).to have_content(equipment.full_name)
     expect(page).to have_content(contract.rental_period)
     expect(page).to have_content(contract.delivery_address)
     expect(page).to have_content(contract.contact)
@@ -42,7 +41,6 @@ feature 'User create a contract' do
   scenario 'change equipment status' do
     equipment = create(:equipment, available: true)
     contract = build(:contract, equipment: [equipment])
-    equipment_name = get_equipment_name(equipment)
 
     visit new_contract_path
 
@@ -52,20 +50,15 @@ feature 'User create a contract' do
 
     visit new_contract_path
 
-    expect(page).to_not have_content(equipment_name)
+    expect(page).to_not have_content(equipment.full_name)
   end
 
   private
 
-  def get_equipment_name(equipment)
-    "##{equipment.serial_number} -
-      #{equipment.category.name}:
-      #{equipment.description}"
-  end
-
   def fill_form(contract, equipment)
-    select_form(contract, equipment)
+    select_form(contract)
     fill_in_form(contract)
+    checkbox_form(equipment)
   end
 
   def fill_in_form(contract)
@@ -76,10 +69,13 @@ feature 'User create a contract' do
     fill_in 'Preço Final', with: contract.total_amount
   end
 
-  def select_form(contract, equipment)
+  def select_form(contract)
     select contract.customer.name, from: 'Cliente'
-    select equipment.description, from: 'Equipamentos'
     select contract.rental_period, from: 'Prazo de Locação'
     select contract.payment_method, from: 'Formas de Pagamento'
+  end
+
+  def checkbox_form(equipment)
+    check equipment.full_name
   end
 end

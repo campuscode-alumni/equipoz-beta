@@ -1,7 +1,7 @@
 <h1>Novo Contrato</h1>
 <%= simple_form_for @contract do |f| %>
   <%= f.input :customer_id, collection: @customer, label: 'Cliente' %>
-  <%= f.association :equipment, collection: @equipment, label_method: :full_name , label: 'Equipamentos' %>
+  <%= f.association :equipment, collection: @equipment, label_method: :full_name , label: 'Equipamentos', as: :check_boxes %>
   <%= f.input :rental_period, collection: [1,3,5,15,30], label: 'Prazo de Locação' %>
   <%= f.input :delivery_address, label: 'Endereço de Entrega' %>
   <%= f.input :contact, label: 'Responsável' %>
