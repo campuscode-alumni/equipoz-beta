@@ -12,6 +12,7 @@ feature 'User create category' do
     category = build(:category)
 
     visit new_category_path
+    binding.pry
 
     fill_in 'Nome', with: category.name
     click_on 'Criar Categoria'

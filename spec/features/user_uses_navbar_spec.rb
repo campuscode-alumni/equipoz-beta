@@ -8,6 +8,14 @@ feature 'user uses navbar' do
 
     expect(current_path).to eq new_equipment_path
   end
+  
+  scenario 'User clicks on Logar' do
+    visit root_path
+
+    click_on 'Logar'
+
+    expect(current_path).to eq login_user_path
+  end
 
   scenario 'User clicks on Contratos and Novo' do
     visit root_path

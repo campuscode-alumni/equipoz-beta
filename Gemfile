@@ -11,6 +11,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'rails_12factor', group: :production
 gem 'pg',             group: :production
+gem 'devise'
 
 group :development, :test do
   gem 'sqlite3', '~> 1.3.12'
