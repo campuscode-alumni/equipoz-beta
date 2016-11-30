@@ -6,20 +6,36 @@ class Contract < ApplicationRecord
   has_many :equipment
   has_many :equipment, through: :rental_equipments
   validates :customer,
-            :equipment,
             :rental_period,
             :contact,
             :delivery_address,
             :payment_method,
+            :equipment,
             :delivery_address, presence: true
+
+  validate :available_equipment, on: :create
+
+  def contract_code
+    (created_at + id).to_i
+  end
+
+  def available_equipment
+    message = 'Equipamentos em uso: '
+    unavailable_equipment = Equipment.where(id: equipment_ids, available: false)
+
+    unavailable_equipment.each do |equipment|
+      message += "#{equipment.full_name}; "
+    end
+
+    errors.add(:equipment, message) unless unavailable_equipment.blank?
+  end
 
   def amount
     total = 0
     equipment.each do |equipment|
-      period_amount = equipment.category_amounts.where(rental_period: rental_period).last
-      if period_amount
-         total += period_amount.amount
-      end
+      period_amount = equipment.category_amounts
+                               .where(rental_period: rental_period).last
+      total += period_amount.amount if period_amount
     end
     total
   end

@@ -6,6 +6,8 @@
   <%= f.input :replacement_value, label: 'Valor de Reposição' %>
   <%= f.input :usage_limit, label: 'Limite de Uso' %>
   <%= f.input :description, label: 'Descrição', as: :text %>
-  <%= f.button :submit, 'Cadastrar Equipamento' %>
+  <nav>
+    <%= f.button :submit, 'Cadastrar Equipamento' %>
+    <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>
+  </nav>
 <% end %>
-<%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>

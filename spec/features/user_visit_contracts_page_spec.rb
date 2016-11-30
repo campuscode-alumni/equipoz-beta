@@ -4,23 +4,23 @@ feature 'User visit contracts page' do
   scenario 'successfully' do
     equipment = create(:equipment)
 
-    contract_01 = create(:contract, equipment: [equipment])
-    contract_02 = create(:contract, equipment: [equipment])
+    contract_one = create(:contract, equipment: [equipment])
+    contract_two = create(:contract, equipment: [equipment])
 
     visit contracts_path
 
     expect(page).to have_content('Contratos')
-    expect(page).to have_content(contract_01.id)
-    expect(page).to have_content(contract_01.customer.name)
-    expect(page).to have_content(contract_01.amount)
-    expect(page).to have_content(contract_01.discount)
-    expect(page).to have_content(contract_01.total_amount)
+    expect(page).to have_content(contract_one.contract_code)
+    expect(page).to have_content(contract_one.customer.name)
+    expect(page).to have_content(contract_one.amount)
+    expect(page).to have_content(contract_one.discount)
+    expect(page).to have_content(contract_one.total_amount)
 
-    expect(page).to have_content(contract_02.id)
-    expect(page).to have_content(contract_02.customer.name)
-    expect(page).to have_content(contract_02.amount)
-    expect(page).to have_content(contract_02.discount)
-    expect(page).to have_content(contract_02.total_amount)
+    expect(page).to have_content(contract_two.contract_code)
+    expect(page).to have_content(contract_two.customer.name)
+    expect(page).to have_content(contract_two.amount)
+    expect(page).to have_content(contract_two.discount)
+    expect(page).to have_content(contract_two.total_amount)
   end
 
   scenario 'empty page' do

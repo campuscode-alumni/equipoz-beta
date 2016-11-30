@@ -9,4 +9,7 @@ AllCops:
    - bin/**/*
    - config/**/*
    - Gemfile
-   - spec/**/*
+   - spec/spec_helper.rb
+   - spec/rails_helper.rb
+   - vendor/**/*
+   - script/**/*

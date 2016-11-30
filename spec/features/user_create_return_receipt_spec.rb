@@ -45,7 +45,7 @@ feature 'User create return receipt' do
   scenario 'already been created' do
     contract = create(:contract)
 
-    delivery_receipt = create(:delivery_receipt, contract: contract)
+    create(:delivery_receipt, contract: contract)
 
     contract.return_receipt = ReturnReceipt.new(employee: 'João',
                                                 document: '123')

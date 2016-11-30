@@ -9,20 +9,17 @@ gem 'simple_form'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-gem 'rubocop', require: false
-
-group :production do
-  gem 'pg'
-end
+gem 'rails_12factor', group: :production
+gem 'pg',             group: :production
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'sqlite3', '~> 1.3.12'
   gem 'byebug', platform: :mri
+  gem 'rubocop', require: false
   gem 'rspec-rails'
   gem 'capybara'
   gem 'pry-byebug'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'sqlite3'
 end
 
 group :test do
@@ -31,10 +28,8 @@ group :test do
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'guard-rubocop'
