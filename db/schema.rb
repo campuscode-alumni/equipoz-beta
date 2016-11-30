@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20161129234418) do
 
   create_table "categories", force: :cascade do |t|
@@ -32,9 +33,7 @@ ActiveRecord::Schema.define(version: 20161129234418) do
     t.string   "delivery_address"
     t.string   "contact"
     t.string   "payment_method"
-    t.float    "amount"
-    t.float    "discount"
-    t.float    "total_amount"
+    t.float    "discount",         default: 0.0
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "customer_id"
