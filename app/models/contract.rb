@@ -43,4 +43,8 @@ class Contract < ApplicationRecord
   def total_amount
     amount - discount
   end
+
+  def equipment_prices
+    RentalEquipment.where(equipment_id: equipment_ids).sum(:amount)
+  end
 end

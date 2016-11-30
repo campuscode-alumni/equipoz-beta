@@ -32,4 +32,25 @@ RSpec.describe Contract, type: :model do
       expect(contract.valid?).to be_falsey
     end
   end
+
+  describe 'equipment_prices' do
+    it 'should return sum of equipment prices' do
+      equipment = create_list(:equipment, 2)
+      contract = create(:contract, equipment: equipment)
+      create(
+        :rental_equipment,
+        contract: contract,
+        equipment: equipment.first,
+        amount: 20
+      )
+      create(
+        :rental_equipment,
+        contract: contract,
+        equipment: equipment.last,
+        amount: 25
+      )
+
+      expect(contract.equipment_prices).to eq(45)
+    end
+  end
 end
