@@ -1,0 +1,8 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+pt-BR:
+  devise:
+    confirmations:
+    failure:
+      already_authenticated: "Você já logado."
+      invalid: "%{authentication_keys} ou senha invalida."

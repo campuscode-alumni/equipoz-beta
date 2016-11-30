@@ -14,7 +14,7 @@ feature 'user uses navbar' do
 
     click_on 'Logar'
 
-    expect(current_path).to eq login_user_path
+    expect(current_path).to eq new_user_session_path
   end
 
   scenario 'User clicks on Contratos and Novo' do
@@ -38,6 +38,8 @@ feature 'user uses navbar' do
   end
 
   scenario 'User clicks on Categorias' do
+    user = create(:user)
+    login_as(user)
     visit root_path
 
     click_on 'Categoria'
