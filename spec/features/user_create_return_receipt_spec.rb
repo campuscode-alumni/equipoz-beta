@@ -2,41 +2,9 @@ require 'rails_helper'
 
 feature 'User create return receipt' do
   scenario 'successfully' do
-    return_receipt = ReturnReceipt.new(employee: 'João',
-                                       document: '123')
-
-    customer = Customer.create(name: 'Gafisa',
-                               legal_name: 'Clockwork',
-                               customer_type: '0',
-                               document: '777777777-99',
-                               fiscal_number: '5688275429',
-                               contact_name: 'Paula',
-                               phone_number: '1406-1406',
-                               email: 'rcecosta@gmail.com',
-                               address: 'Explanada dos ministérios, 33')
-
-    category = Category.create(name: 'Furadeira')
-
-    equipment = Equipment.create(category: category,
-                                 serial_number: '12345678',
-                                 acquisition_date: Time.now.to_datetime,
-                                 replacement_value: 12.45,
-                                 usage_limit: 2,
-                                 description: 'Super potente')
-
-    Contract.create(customer: customer,
-                    equipment: [equipment],
-                    rental_period: 3.days,
-                    delivery_address: 'Av. Paulista',
-                    contact: 'Alan',
-                    payment_method: 'Propina',
-                    amount: 3330.0,
-                    discount: 1000.0,
-                    total_amount: 2330.0)
-
-    visit contracts_path
-
-    click_on 'Emitir Retirada'
+    contract = create(:contract)
+    create(:delivery_receipt, contract: contract)
+    return_receipt = build(:return_receipt)
 
     visit contracts_path
 
@@ -51,35 +19,32 @@ feature 'User create return receipt' do
     expect(page).to have_content return_receipt.document
   end
 
+  scenario 'user view return receipt data' do
+    contract = create(:contract)
+    delivery_receipt = create(:delivery_receipt, contract: contract)
+    return_receipt = create(:return_receipt, contract: contract)
+
+    visit return_receipt_contract_path(id: contract.id)
+
+    expect(page).to have_content(
+      I18n.l(return_receipt.created_at.to_date, format: :long)
+    )
+    expect(page).to have_content return_receipt.employee
+    expect(page).to have_content return_receipt.document
+    contract.equipment.each do |ce|
+      expect(page).to have_content(ce.full_name)
+    end
+    expect(page).to have_content(contract.contract_code)
+    expect(page).to have_content(contract.customer.name)
+    expect(page).to have_content(contract.customer.document)
+    expect(page).to have_content(
+      I18n.l(delivery_receipt.created_at.to_date, format: :long)
+    )
+  end
+
   scenario 'unsuccessfully' do
-    customer = Customer.create(name: 'Gafisa',
-                               legal_name: 'Clockwork',
-                               customer_type: '0',
-                               document: '777777777-99',
-                               fiscal_number: '5688275429',
-                               contact_name: 'Paula',
-                               phone_number: '1406-1406',
-                               email: 'rcecosta@gmail.com',
-                               address: 'Explanada dos ministérios, 33')
+    create(:contract)
 
-    category = Category.create(name: 'Furadeira')
-
-    equipment = Equipment.create(category: category,
-                                 serial_number: '12345678',
-                                 acquisition_date: Time.now.to_datetime,
-                                 replacement_value: 12.45,
-                                 usage_limit: 2,
-                                 description: 'Super potente')
-
-    Contract.create(customer: customer,
-                    equipment: [equipment],
-                    rental_period: 3.days,
-                    delivery_address: 'Av. Paulista',
-                    contact: 'Alan',
-                    payment_method: 'Propina',
-                    amount: 3330.0,
-                    discount: 1000.0,
-                    total_amount: 2330.0)
     visit contracts_path
 
     click_on 'Emitir Retirada'
@@ -97,38 +62,9 @@ feature 'User create return receipt' do
   end
 
   scenario 'already been created' do
-    customer = Customer.create(name: 'Gafisa',
-                               legal_name: 'Clockwork',
-                               customer_type: '0',
-                               document: '777777777-99',
-                               fiscal_number: '5688275429',
-                               contact_name: 'Paula',
-                               phone_number: '1406-1406',
-                               email: 'rcecosta@gmail.com',
-                               address: 'Explanada dos ministérios, 33')
-    category = Category.create(name: 'Furadeira')
-
-    equipment = Equipment.create(category: category,
-                                 serial_number: '12345678',
-                                 acquisition_date: Time.now.to_datetime,
-                                 replacement_value: 12.45,
-                                 usage_limit: 2,
-                                 description: 'Super potente')
-
-    contract = Contract.create(customer: customer,
-                               equipment: [equipment],
-                               rental_period: 3.days,
-                               delivery_address: 'Av. Paulista',
-                               contact: 'Alan',
-                               payment_method: 'Propina',
-                               amount: 3330.0,
-                               discount: 1000.0,
-                               total_amount: 2330.0)
-
+    contract = create(:contract)
     create(:delivery_receipt, contract: contract)
-
-    contract.return_receipt = ReturnReceipt.new(employee: 'João',
-                                                document: '123')
+    create(:return_receipt, contract: contract)
 
     contract.save
 

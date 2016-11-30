@@ -18,10 +18,19 @@ feature 'user create delivery receipt' do
 
     expect(page).to have_content('Recibo de Entrega')
     expect(page).to have_content(contract.contact)
+    expect(page).to have_content(contract.customer.name)
+    expect(page).to have_content(contract.customer.document)
+
+    contract.equipment.each do |ce|
+      expect(page).to have_content(ce.full_name)
+    end
+
     expect(page).to have_content(contract.rental_period)
     expect(page).to have_content(contract.delivery_address)
-    expect(page).to have_content(contract.delivery_receipt.created_at)
-    expect(page).to have_content(contract.delivery_receipt.contract_id)
+    expect(page).to have_content(
+      I18n.l(contract.delivery_receipt.created_at.to_date, format: :long)
+    )
+    expect(page).to have_content(contract.contract_code)
   end
 
   scenario 'User visit delivery receipt page of invalid contract' do
@@ -52,7 +61,9 @@ feature 'user create delivery receipt' do
     expect(page).to have_content(contract.contact)
     expect(page).to have_content(contract.rental_period)
     expect(page).to have_content(contract.delivery_address)
-    expect(page).to have_content(contract.delivery_receipt.created_at)
-    expect(page).to have_content(contract.delivery_receipt.contract_id)
+    expect(page).to have_content(
+      I18n.l(contract.delivery_receipt.created_at.to_date, format: :long)
+    )
+    expect(page).to have_content(contract.contract_code)
   end
 end

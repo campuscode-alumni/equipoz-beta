@@ -4,10 +4,8 @@ feature 'User visit contracts page' do
   scenario 'successfully' do
     equipment = create(:equipment)
 
-    contract_one = create(:contract,
-                          equipment: [equipment])
-    contract_two = create(:contract,
-                          total_amount: 450.90, equipment: [equipment])
+    contract_one = create(:contract, equipment: [equipment])
+    contract_two = create(:contract, equipment: [equipment])
 
     visit contracts_path
 

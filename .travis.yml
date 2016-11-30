@@ -1,6 +1,11 @@
 language: ruby
 rvm:
   - 2.3.1
+
+branches:
+  only:
+  - master
+
 before_script:
   - bundle exec rails db:create
   - bundle exec rails db:migrate

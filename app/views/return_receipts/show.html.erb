@@ -1,12 +1,22 @@
 <h1>Recibo de Devolução</h1>
 
-<h2>São Paulo, <%= Time.now %></h2>
+<h2>São Paulo,
+  <%= l(@contract.return_receipt.created_at.to_date, format: :long) %>
+</h2>
 
-<p>Eu,<%= @contract.return_receipt.employee %>, portador do documento <%= @contract.return_receipt.document %>, declaro ter
-recebido os equipamentos ………………… (lista dos equipamentos contendo numero de serie
-e nome) em devolução referente ao contrato <%= @contract.id %> em perfeitas
-condições da empresa ………………………………………………. (razão social), inscrita no
-CNPJ <%= @contract.customer.document %> no dia <%= @contract.return_receipt.created_at %>.</p>
+<p>Eu,<%= @contract.return_receipt.employee %>, portador do documento
+  <%= @contract.return_receipt.document %>, declaro ter
+recebido os equipamentos:
+</p>
+<p>
+  <% @contract.equipment.each do |ce| %>
+    <p><%= ce.full_name %></p>
+  <% end %>
+</p>
+<p> em devolução referente ao contrato <%= @contract.contract_code %>
+em perfeitas condições da empresa <%= @contract.customer.name %>, inscrita no
+CNPJ <%= @contract.customer.document %> no dia
+<%= l(@contract.return_receipt.created_at.to_date, format: :long) %>.</p>
 
 <p>_____________________________</p>
 <p>_Assinatura do Funcionário</p>

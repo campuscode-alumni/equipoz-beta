@@ -14,7 +14,7 @@ feature 'User create a contract' do
 
     visit new_contract_path
 
-    fill_form(contract, equipment)
+    fill_form(contract, [equipment])
 
     click_on 'Gerar Contrato'
 
@@ -25,10 +25,9 @@ feature 'User create a contract' do
     expect(page).to have_content(contract.delivery_address)
     expect(page).to have_content(contract.contact)
     expect(page).to have_content(contract.payment_method)
-    expect(page).to have_content(contract.amount)
     expect(page).to have_content(contract.discount)
-    expect(page).to have_content(contract.total_amount)
   end
+
   scenario 'unsuccessfully' do
     visit new_contract_path
 
@@ -39,8 +38,8 @@ feature 'User create a contract' do
   end
 
   scenario 'change equipment status' do
-    equipment = create(:equipment, available: true)
-    contract = build(:contract, equipment: [equipment])
+    equipment = create_list(:equipment, 2, available: true)
+    contract = build(:contract, equipment: equipment)
 
     visit new_contract_path
 
@@ -50,7 +49,38 @@ feature 'User create a contract' do
 
     visit new_contract_path
 
-    expect(page).to_not have_content(equipment.full_name)
+    expect(page).to_not have_content(equipment.first.full_name)
+  end
+
+  scenario 'and view amount calculated' do
+    category_amount = create(:category_amount, amount: 600)
+    valor = 1200
+    equipment = create_list(:equipment, 2, category: category_amount.category)
+    contract = build(:contract, equipment: equipment)
+
+    visit new_contract_path
+
+    fill_form(contract, equipment)
+
+    click_on 'Gerar Contrato'
+
+    expect(page).to have_content("Valor: #{valor}")
+  end
+
+  scenario 'and view total_amount calculated with discount' do
+    category_amount = create(:category_amount, amount: 600)
+    equipment = create_list(:equipment, 2, category: category_amount.category)
+    total = 1100
+
+    contract = build(:contract, equipment: equipment, discount: 100)
+
+    visit new_contract_path
+
+    fill_form(contract, equipment)
+
+    click_on 'Gerar Contrato'
+
+    expect(page).to have_content("Total: #{total}")
   end
 
   private
@@ -64,9 +94,7 @@ feature 'User create a contract' do
   def fill_in_form(contract)
     fill_in 'Endereço de Entrega', with: contract.delivery_address
     fill_in 'Responsável', with: contract.contact
-    fill_in 'Preço', with: contract.amount
     fill_in 'Desconto', with: contract.discount
-    fill_in 'Preço Final', with: contract.total_amount
   end
 
   def select_form(contract)
@@ -76,6 +104,8 @@ feature 'User create a contract' do
   end
 
   def checkbox_form(equipment)
-    check equipment.full_name
+    equipment.each do |e|
+      check e.full_name
+    end
   end
 end
