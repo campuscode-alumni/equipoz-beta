@@ -12,6 +12,7 @@ class Contract < ApplicationRecord
             :payment_method,
             :equipment,
             :delivery_address, presence: true
+
   validate :available_equipment, on: :create
 
   def contract_code
@@ -27,5 +28,19 @@ class Contract < ApplicationRecord
     end
 
     errors.add(:equipment, message) unless unavailable_equipment.blank?
+  end
+
+  def amount
+    total = 0
+    equipment.each do |equipment|
+      period_amount = equipment.category_amounts
+                               .where(rental_period: rental_period).last
+      total += period_amount.amount if period_amount
+    end
+    total
+  end
+
+  def total_amount
+    amount - discount
   end
 end
