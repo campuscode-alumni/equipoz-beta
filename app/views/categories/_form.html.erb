@@ -1,5 +1,9 @@
 <%= simple_form_for @category do |f| %>
   <%= f.input :name %>
+  <%= f.simple_fields_for :category_amounts do |c| %>
+    <%= c.input :rental_period, as: :hidden %>
+    <%= c.input :amount, label: "Valor para #{ pluralize( c.object.rental_period, 'dia', plural: 'dias') }" %>
+  <% end %>
   <nav>
     <%= f.button :submit, 'Criar Categoria' %>
     <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>

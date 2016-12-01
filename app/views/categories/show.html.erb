@@ -1,4 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-heading"><h1><%= @category.name %></h1></div>
+  <% @category.category_amounts.each do |c| %>
+    <p>Valor para <%= pluralize(c.rental_period, 'dia', plural: 'dias') %>: <%= number_to_currency(c.amount) %></p>
+  <% end %>
 </div>
 <%= link_to 'Voltar', contracts_path, class: 'btn btn-default' %>

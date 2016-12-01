@@ -14,9 +14,17 @@ feature 'User create category' do
     visit new_category_path
 
     fill_in 'Nome', with: category.name
+
+    Category.periods.each do |period|
+      fill_in "Valor para #{ pluralize(period, 'dia', plural: 'dias') }", with: 200
+    end
+
     click_on 'Criar Categoria'
 
     expect(page).to have_content(category.name)
+    Category.periods.each do |period|
+      expect(page).to have_content("Valor para #{ pluralize(period, 'dia', plural: 'dias') }: 200")
+    end
   end
 
   scenario 'And empty name' do
@@ -43,4 +51,10 @@ feature 'User create category' do
     click_on 'Voltar'
     expect(contracts_path)
   end
+
+  private
+
+    def pluralize(count, singular, plural = nil)
+      ApplicationController.helpers.pluralize(count, singular, plural)
+    end
 end
