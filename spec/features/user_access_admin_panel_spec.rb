@@ -16,4 +16,15 @@ feature 'user access admin panel' do
 		expect(page).to have_content('Sair')
 		expect(page).to have_content('Painel administrativo')
 	end
+
+	scenario 'User cant access admin panel' do
+		visit root_path
+
+		click_on contracts_path
+
+		expect(page).to not have_content('Painel Administrativo')
+		expect(page).to have_content('Logar')
+	end
+
+
 end
