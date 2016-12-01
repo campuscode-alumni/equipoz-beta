@@ -33,6 +33,6 @@ class CategoryAmountsController < ApplicationController
 
   def set_attributes
     @categories = Category.all
-    @rental_periods = [1, 3, 5, 7, 15, 20, 30]
+    @rental_periods = Category.periods
   end
 end
