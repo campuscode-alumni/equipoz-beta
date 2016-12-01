@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :rental_equipment do
-    contract nil
-    equipment nil
+    contract
+    equipment
+    amount 500
   end
 end

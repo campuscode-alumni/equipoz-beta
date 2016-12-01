@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
 			get 'return_receipt', to: 'return_receipts#show'
 
+      get 'prices', to: 'contract_prices#edit'
+      post 'prices', to: 'contract_prices#update'
+
       put 'finish', to: 'finish_contracts#update'
     end
   end

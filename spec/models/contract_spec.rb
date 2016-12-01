@@ -33,24 +33,20 @@ RSpec.describe Contract, type: :model do
     end
   end
 
-  describe 'equipment_prices' do
+  describe 'amount' do
     it 'should return sum of equipment prices' do
       equipment = create_list(:equipment, 2)
       contract = create(:contract, equipment: equipment)
-      create(
-        :rental_equipment,
-        contract: contract,
-        equipment: equipment.first,
-        amount: 20
-      )
-      create(
-        :rental_equipment,
-        contract: contract,
-        equipment: equipment.last,
-        amount: 25
-      )
+      equipment.each do |equip|
+        create(
+          :rental_equipment,
+          contract: contract,
+          equipment: equip,
+          amount: 50
+        )
+      end
 
-      expect(contract.equipment_prices).to eq(45)
+      expect(contract.amount).to eq(100)
     end
   end
 end

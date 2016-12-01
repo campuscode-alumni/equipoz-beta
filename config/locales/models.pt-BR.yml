@@ -7,3 +7,5 @@ pt-BR:
     attributes:
       category:
         name: Nome
+      contract:
+        discount: Desconto

@@ -31,20 +31,10 @@ class Contract < ApplicationRecord
   end
 
   def amount
-    total = 0
-    equipment.each do |equipment|
-      period_amount = equipment.category_amounts
-                               .where(rental_period: rental_period).last
-      total += period_amount.amount if period_amount
-    end
-    total
+    RentalEquipment.where(equipment_id: equipment_ids).sum(:amount)
   end
 
   def total_amount
     amount - discount
-  end
-
-  def equipment_prices
-    RentalEquipment.where(equipment_id: equipment_ids).sum(:amount)
   end
 end
