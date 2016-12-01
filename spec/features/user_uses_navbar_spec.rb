@@ -5,6 +5,9 @@ feature 'user uses navbar' do
     visit root_path
 
     click_on 'Equipamento'
+    within('#equipment') do
+      click_on 'Novo'
+    end
 
     expect(current_path).to eq new_equipment_path
   end
@@ -13,8 +16,9 @@ feature 'user uses navbar' do
     visit root_path
 
     click_on 'Contratos'
-
-    click_on 'Novo'
+    within('#contracts_menu') do
+      click_on 'Novo'
+    end
 
     expect(current_path).to eq new_contract_path
   end
@@ -24,7 +28,9 @@ feature 'user uses navbar' do
 
     click_on 'Contratos'
 
-    click_on 'Ver todos'
+    within('#contracts_menu') do
+      click_on 'Ver todos'
+    end
 
     expect(current_path).to eq contracts_path
   end

@@ -20,15 +20,19 @@
         <li class="nav-item">
           <%= link_to(t(:root), root_path, class: "nav-link") %>
         </li>
-        <li class="dropdown">
-          <a href="#" id="contracts_menu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= t(:contracts) %><span class="caret"></span></a>
+        <li id="contracts_menu" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= t(:contracts) %><span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><%= link_to("Novo", new_contract_path, class: "dropdown-item") %></li>
-            <li><%= link_to("Ver todos", contracts_path, class: "dropdown-item") %></li>
+            <li><%= link_to(t(:new), new_contract_path, class: "dropdown-item") %></li>
+            <li><%= link_to(t(:all), contracts_path, class: "dropdown-item") %></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <%= link_to(t(:new_equipment), new_equipment_path, class: "nav-link") %>
+        <li id="equipment" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= t(:equipment) %><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to(t(:new), new_equipment_path, class: "nav-link") %></li>
+            <li><%= link_to(t(:all), equipment_index_path, class: "nav-link") %></li>
+          </ul>
         </li>
         <li class="nav-item">
           <%= link_to(t(:new_category), new_category_path, class: "nav-link") %>

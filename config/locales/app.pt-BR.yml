@@ -1,4 +1,12 @@
 pt-BR:
+  all: "Ver todos"
+  new: "Novo"
   rental_period:
     one: "%{count} dia"
     other: "%{count} dias"
+  contracts: Contratos
+  new_customer: Cliente
+  root: Home
+  equipment: Equipamentos
+  new_category: Categoria
+  login: Logar
