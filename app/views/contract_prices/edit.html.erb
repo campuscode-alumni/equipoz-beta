@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h1>Contrato: <%= @contract.contract_code %></h1></div>
+  <div class="panel-body">
+    <table class="table">
+      <% @contract.equipment.each_with_index do |equipment, index| %>
+      <tr>
+        <th>Equipamentos</th>
+        <th>Descrição</th>
+      </tr>
+      <tr>
+        <td><%= "##{index + 1}"%></td>
+        <td><%= equipment.full_name %></td>
+      </tr>
+      <% end %>
+    </table>
+    <%= simple_form_for prices_contract_path do |f| %>
+      <p>Valor Total: <%= @contract.amount %></p>
+      <p>Prazo de Locação: <%= @contract.rental_period %></p>
+      <%= f.input :discount, label: 'Desconto' %>
+      <%= f.submit 'Registrar Desconto' %>
+    <% end %>
+  </div>
+</div>

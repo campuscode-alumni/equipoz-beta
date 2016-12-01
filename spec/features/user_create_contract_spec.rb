@@ -9,8 +9,13 @@ feature 'User create a contract' do
   end
 
   scenario 'successfully' do
-    equipment = create(:equipment)
-    contract = build(:contract, equipment: [equipment])
+    category_amount = create(:category_amount)
+    equipment = create(:equipment, category: category_amount.category)
+    contract = build(
+      :contract,
+      rental_period: category_amount.rental_period,
+      equipment: [equipment]
+    )
 
     visit new_contract_path
 
@@ -40,6 +45,13 @@ feature 'User create a contract' do
   scenario 'change equipment status' do
     equipment = create_list(:equipment, 2, available: true)
     contract = build(:contract, equipment: equipment)
+    equipment.each do |equip|
+      create(
+        :category_amount,
+        category: equip.category,
+        rental_period: contract.rental_period
+      )
+    end
 
     visit new_contract_path
 
