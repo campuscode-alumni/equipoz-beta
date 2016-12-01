@@ -22,6 +22,8 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :category_amounts_attributes => [:rental_period, :amount])
+    params.require(:category).permit(:name,
+                                     category_amounts_attributes:
+                                      [:rental_period, :amount])
   end
 end

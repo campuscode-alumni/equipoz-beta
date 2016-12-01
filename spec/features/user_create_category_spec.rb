@@ -16,14 +16,17 @@ feature 'User create category' do
     fill_in 'Nome', with: category.name
 
     Category.periods.each do |period|
-      fill_in "Valor para #{ pluralize(period, 'dia', plural: 'dias') }", with: 200
+      fill_in "Valor para #{pluralize(period, 'dia', plural: 'dias')}",
+              with: 200
     end
 
     click_on 'Criar Categoria'
 
     expect(page).to have_content(category.name)
     Category.periods.each do |period|
-      expect(page).to have_content("Valor para #{ pluralize(period, 'dia', plural: 'dias') }: 200")
+      expect(page).to have_content(
+        "Valor para #{pluralize(period, 'dia', plural: 'dias')}: R$ 200,00"
+      )
     end
   end
 
@@ -54,7 +57,7 @@ feature 'User create category' do
 
   private
 
-    def pluralize(count, singular, plural = nil)
-      ApplicationController.helpers.pluralize(count, singular, plural)
-    end
+  def pluralize(count, singular, plural = nil)
+    ApplicationController.helpers.pluralize(count, singular, plural)
+  end
 end
