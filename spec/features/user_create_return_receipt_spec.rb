@@ -2,13 +2,9 @@ require 'rails_helper'
 
 feature 'User create return receipt' do
   scenario 'successfully' do
-    return_receipt = ReturnReceipt.new(employee: 'João',
-                                       document: '123')
-    create(:contract)
-
-    visit contracts_path
-
-    click_on 'Emitir Retirada'
+    contract = create(:contract)
+    create(:delivery_receipt, contract: contract)
+    return_receipt = build(:return_receipt)
 
     visit contracts_path
 
@@ -21,6 +17,29 @@ feature 'User create return receipt' do
 
     expect(page).to have_content return_receipt.employee
     expect(page).to have_content return_receipt.document
+  end
+
+  scenario 'user view return receipt data' do
+    contract = create(:contract)
+    delivery_receipt = create(:delivery_receipt, contract: contract)
+    return_receipt = create(:return_receipt, contract: contract)
+
+    visit return_receipt_contract_path(id: contract.id)
+
+    expect(page).to have_content(
+      I18n.l(return_receipt.created_at.to_date, format: :long)
+    )
+    expect(page).to have_content return_receipt.employee
+    expect(page).to have_content return_receipt.document
+    contract.equipment.each do |ce|
+      expect(page).to have_content(ce.full_name)
+    end
+    expect(page).to have_content(contract.contract_code)
+    expect(page).to have_content(contract.customer.name)
+    expect(page).to have_content(contract.customer.document)
+    expect(page).to have_content(
+      I18n.l(delivery_receipt.created_at.to_date, format: :long)
+    )
   end
 
   scenario 'unsuccessfully' do
@@ -44,11 +63,8 @@ feature 'User create return receipt' do
 
   scenario 'already been created' do
     contract = create(:contract)
-
     create(:delivery_receipt, contract: contract)
-
-    contract.return_receipt = ReturnReceipt.new(employee: 'João',
-                                                document: '123')
+    create(:return_receipt, contract: contract)
 
     contract.save
 
